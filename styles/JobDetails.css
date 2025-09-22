@@ -1,0 +1,227 @@
+.job-detail-main-page {
+  max-width: 720px;
+  margin: 44px auto 0;
+  background: var(--color-bg-light);
+  border-radius: 12px;
+  box-shadow: 0 3px 14px rgba(67,105,182,0.08);
+  padding: 32px 20px 38px;
+  min-height: 600px;
+}
+
+/* HEADER SECTION */
+.job-detail-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 22px;
+  margin-bottom: 15px;
+}
+.job-detail-title-section { flex: 1; }
+.job-detail-main-title {
+  font-size: var(--font-heading);
+  margin-bottom: 10px;
+  color: var(--color-primary);
+}
+.job-detail-meta-info {
+  display: flex;
+  gap: 18px;
+  row-gap: 8px;
+  font-size: var(--font-text);
+  color: var(--color-secondary);
+  flex-wrap: wrap;
+}
+.job-detail-meta-info > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.job-detail-apply-btn-large {
+  padding: 8px 28px;
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  font-size: var(--font-text);
+  font-weight: 600;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  margin-top: 2px;
+  transition: background 0.18s;
+}
+.job-detail-apply-btn-large:hover {
+  filter: brightness(0.93); /* more broadly supported than darken() */
+}
+.job-detail-back-button,
+.job-detail-back-to-careers-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  font-size: var(--font-text);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.job-detail-back-to-careers-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border-radius: 19px;
+  background: var(--color-bg-light);
+}
+
+/* CONTENT */
+.job-detail-content-section p {
+  font-size: var(--font-text);
+  color: var(--color-text);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.job-detail-content-section h2 {
+  font-size: var(--font-subheading);
+  color: var(--color-primary);
+  margin-bottom: 8px;
+  padding: 0 16px; 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+}
+.job-detail-requirements-list,
+.job-detail-benefits-list {
+  list-style-type: disc;
+  padding-left: 23px;
+  font-size: var(--font-text);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+.job-detail-actions-section {
+  text-align: left;
+  margin-top: 28px;
+}
+
+/* FORM */
+.application-form-main-page {
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--color-bg-light);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+.job-detail-main-page input,
+.job-detail-main-page select,
+.job-detail-main-page textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 4px 0 12px;
+  border: 1px solid var(--color-text-muted);
+  border-radius: 6px;
+  font-size: var(--font-text);
+}
+.job-detail-main-page input.error,
+.job-detail-main-page textarea.error {
+  border-color: var(--color-error);
+  background: #fff5f5;
+}
+.application-form-error-message {
+  color: var(--color-error);
+  font-size: 0.9rem;
+  margin: -8px 0 12px;
+}
+.application-form-submit-btn {
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  padding: 10px 28px;
+  border: none;
+  border-radius: 20px;
+  font-size: var(--font-text);
+  cursor: pointer;
+  transition: background .2s;
+}
+.application-form-submit-btn:disabled {
+  background: var(--color-bg-muted);
+  cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .job-detail-main-page {
+    padding: 16px 0 24px;
+    margin: 20px 5px 0;
+    min-height: unset;
+    max-width: 98vw;
+    border-radius: 8px;
+  }
+  .application-form-main-page {
+    padding: 12px;
+    border-radius: 7px;
+  }
+  .job-detail-header-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .job-detail-main-title {
+    font-size: 1.3rem;
+  }
+  .job-detail-meta-info {
+    font-size: .9rem;
+    gap: 12px;
+  }
+  .job-detail-apply-btn-large {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 10px;
+    font-size: 1rem;
+  }
+  .job-detail-content-section h2 {
+    font-size: 1.1rem;
+  }
+  .job-detail-content-section p,
+  .job-detail-requirements-list,
+  .job-detail-benefits-list {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .job-detail-back-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+}
+
+/* DECORATIVE SHAPES */
+.decorative-elements {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+.floating-shape {
+  position: absolute;
+  background: radial-gradient(circle at 30% 70%, var(--orange-main) 40%, var(--orange-light) 100%);
+  border-radius: 50%;
+  opacity: var(--opacity, 0.3);
+  animation: float 6s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  width: var(--size-w, 80px);
+  height: var(--size-h, 80px);
+  top: var(--top, auto);
+  left: var(--left, auto);
+  right: var(--right, auto);
+  bottom: var(--bottom, auto);
+}
+.floating-shape:nth-child(1) { --size-w: 120px; --size-h: 120px; --top: 5%;   --left: 5%;   --opacity: 0.3;  --delay: 0s; }
+.floating-shape:nth-child(2) { --size-w: 80px;  --size-h: 80px;  --top: 15%;  --right: 10%; --opacity: 0.25; --delay: 2s; }
+.floating-shape:nth-child(3) { --size-w: 100px; --size-h: 100px; --bottom: 15%; --left: 15%; --opacity: 0.3; --delay: 4s; }
+.floating-shape:nth-child(4) { --size-w: 70px;  --size-h: 70px;  --top: 40%;  --right: 25%; --opacity: 0.2;  --delay: 1s; }
+.floating-shape:nth-child(5) { --size-w: 90px;  --size-h: 90px;  --bottom: 40%; --right: 5%; --opacity: 0.25; --delay: 3s; }
+.floating-shape:nth-child(6) { --size-w: 60px;  --size-h: 60px;  --top: 60%;  --left: 40%;  --opacity: 0.2;  --delay: 5s; }
+.floating-shape:nth-child(7) { --size-w: 110px; --size-h: 110px; --top: 25%;  --left: 60%;  --opacity: 0.3;  --delay: 1.5s; }
+.floating-shape:nth-child(8) { --size-w: 75px;  --size-h: 75px;  --bottom: 60%; --left: 80%; --opacity: 0.25; --delay: 3.5s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%      { transform: translateY(-20px) rotate(180deg); }
+}

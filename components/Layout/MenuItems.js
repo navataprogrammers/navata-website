@@ -1,0 +1,32 @@
+export const MenuItems = {
+  company: [
+    {
+      title: 'About Us',
+      path: '/about',
+      cName: 'dropdown-link'
+    },
+    {
+      title: 'Careers',
+      path: '/careers',
+      cName: 'dropdown-link'
+    },
+    {
+      title: 'Ecosystem',
+      path: '/ecosystem',
+      cName: 'dropdown-link'
+    }
+  ],
+  
+  media: [
+    {
+      title: 'Press Releases',
+      path: '/press-releases',
+      cName: 'dropdown-link'
+    },
+    {
+      title: 'Blog',
+      path: '/blog',
+      cName: 'dropdown-link'
+    } 
+  ] 
+};

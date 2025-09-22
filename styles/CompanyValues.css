@@ -1,0 +1,339 @@
+/* Company Values Section Styles */
+.values-section {
+  padding: 3rem 0;
+  background-color: var(--color-bg-light);
+}
+
+.values-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Header Styles */
+.values-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+}
+
+.values-title {
+  font-size: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .values-title {
+    font-size: var(--font-heading);
+  }
+}
+
+.values-subtitle {
+  font-size: var(--font-subheading);
+  color: var(--color-text-muted);
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Grid Layout */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Value Card Base Styles */
+.value-card {
+  position: relative;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem; 
+  max-width: 350px;      
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f3f4f6;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  overflow: hidden;
+  margin: 0 auto;        /* Center each card horizontally */
+}
+
+
+.value-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.5rem);
+}
+
+/* Gradient Background */
+.value-card__background {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.value-card:hover .value-card__background {
+  opacity: 0.05;
+}
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Visible state (triggered by AnimateOnScroll) */
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Color Variants for Background */
+.value-card--blue .value-card__background {
+  background: linear-gradient(to bottom right, #3b82f6, #2563eb);
+}
+
+.value-card--green .value-card__background {
+  background: linear-gradient(to bottom right, #10b981, #059669);
+}
+
+.value-card--purple .value-card__background {
+  background: linear-gradient(to bottom right, #8b5cf6, #7c3aed);
+}
+
+.value-card--orange .value-card__background {
+  background: linear-gradient(to bottom right, #f97316, #ea580c);
+}
+
+.value-card--red .value-card__background {
+  background: linear-gradient(to bottom right, #ef4444, #dc2626);
+}
+
+.value-card--teal .value-card__background {
+  background: linear-gradient(to bottom right, #14b8a6, #0d9488);
+}
+
+/* Icon Container */
+.value-card__icon-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.value-card__icon-wrapper {
+  display: inline-flex;
+  padding: 1rem;
+  border-radius: 1rem;
+  transition: all 0.5s ease;
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.value-card:hover .value-card__icon-wrapper {
+  transform: scale(1.1);
+}
+
+.value-card__icon {
+  height: 2rem;
+  width: 2rem;
+  color: white;
+  transition: transform 0.5s ease;
+}
+
+.value-card:hover .value-card__icon {
+  transform: rotate(12deg);
+}
+
+/* Color Variants for Icon Wrapper */
+.value-card--blue .value-card__icon-wrapper {
+  background: linear-gradient(to bottom right, #3b82f6, #2563eb);
+}
+
+.value-card--green .value-card__icon-wrapper {
+  background: linear-gradient(to bottom right, #10b981, #059669);
+}
+
+.value-card--purple .value-card__icon-wrapper {
+  background: linear-gradient(to bottom right, #8b5cf6, #7c3aed);
+}
+
+.value-card--orange .value-card__icon-wrapper {
+  background: linear-gradient(to bottom right, #f97316, #ea580c);
+}
+
+.value-card--red .value-card__icon-wrapper {
+  background: linear-gradient(to bottom right, #ef4444, #dc2626);
+}
+
+.value-card--teal .value-card__icon-wrapper {
+  background: linear-gradient(to bottom right, #14b8a6, #0d9488);
+}
+
+/* Floating Animation Circle */
+.value-card__floating-circle {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.value-card:hover .value-card__floating-circle {
+  opacity: 1;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Color Variants for Floating Circle */
+.value-card--blue .value-card__floating-circle {
+  background: linear-gradient(to bottom right, #3b82f6, #2563eb);
+}
+
+.value-card--green .value-card__floating-circle {
+  background: linear-gradient(to bottom right, #10b981, #059669);
+}
+
+.value-card--purple .value-card__floating-circle {
+  background: linear-gradient(to bottom right, #8b5cf6, #7c3aed);
+}
+
+.value-card--orange .value-card__floating-circle {
+  background: linear-gradient(to bottom right, #f97316, #ea580c);
+}
+
+.value-card--red .value-card__floating-circle {
+  background: linear-gradient(to bottom right, #ef4444, #dc2626);
+}
+
+.value-card--teal .value-card__floating-circle {
+  background: linear-gradient(to bottom right, #14b8a6, #0d9488);
+}
+
+/* Title */
+.value-card__title {
+  font-size: var(--font-subheading);
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.value-card:hover .value-card__title {
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Description */
+.value-card__description {
+  color: var(--color-text-muted);
+  font-size: var(--font-text);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.value-card:hover .value-card__description {
+  color: #374151;
+}
+
+/* Hover Border Effect */
+.value-card__border {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  border: 2px solid transparent;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.value-card:hover .value-card__border {
+  opacity: 1;
+}
+
+/* Color Variants for Border */
+.value-card--blue:hover .value-card__border {
+  border-image: linear-gradient(to right, #3b82f6, #2563eb) 1;
+}
+
+.value-card--green:hover .value-card__border {
+  border-image: linear-gradient(to right, #10b981, #059669) 1;
+}
+
+.value-card--purple:hover .value-card__border {
+  border-image: linear-gradient(to right, #8b5cf6, #7c3aed) 1;
+}
+
+.value-card--orange:hover .value-card__border {
+  border-image: linear-gradient(to right, #f97316, #ea580c) 1;
+}
+
+.value-card--red:hover .value-card__border {
+  border-image: linear-gradient(to right, #ef4444, #dc2626) 1;
+}
+
+.value-card--teal:hover .value-card__border {
+  border-image: linear-gradient(to right, #14b8a6, #0d9488) 1;
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Accessibility */
+.value-card:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .value-card,
+  .value-card__icon-wrapper,
+  .value-card__icon,
+  .value-card__title,
+  .value-card__description,
+  .value-card__background,
+  .value-card__floating-circle,
+  .value-card__border {
+    transition: none;
+    animation: none;
+  }
+  
+  .value-card:hover {
+    transform: none;
+  }
+  
+  .value-card:hover .value-card__icon-wrapper {
+    transform: none;
+  }
+  
+  .value-card:hover .value-card__icon {
+    transform: none;
+  }
+}

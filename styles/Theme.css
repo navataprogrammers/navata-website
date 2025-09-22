@@ -1,0 +1,52 @@
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
+
+/* CSS */
+body { font-family: 'Inter', sans-serif; }
+h1, h2, h3 { font-family: 'Arial,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Apple SD Gothic Neo,Malgun Gothic,PingFang TC,Microsoft JhengHei,PingFang SC,Microsoft YaHei,Hiragino Kaku Gothic ProN,Meiryo,sans-serif'; 
+}
+
+:root {
+  /* Font Sizes */
+  --font-main: 3rem;
+  --font-heading: 2rem;
+  --font-subheading: 1.25rem;
+  --font-text: 1rem;
+  --font-label: 0.875rem;
+
+  /* Primary Brand Colors */
+  --color-primary: #000000;         /* Black for main headings and primary text */
+  --color-secondary: #8B4513;       /* Brown for icons, accents, and secondary elements */
+  --color-accent: #704214;          /* Medium brown for buttons, borders, hover states */
+
+  /* Supporting Browns for Icons & Details */
+  --color-dark-brown: #5D2F02;      /* Deep brown for detailed elements */
+  --color-medium-brown: #8B4513;    /* Main brown for icons and accents */
+  --color-light-brown: #A0522D;     /* Light brown for subtle accents */
+  --color-warm-brown: #704214;      /* Warm brown for secondary text */    
+  --color-yellow:  #ffc107;       /* Yellow for highlights and call-to-action elements */                                        
+
+  /* Background Colors */
+  --color-bg: #ffffff;              /* Pure white background */
+  --color-bg-light: #f8f9fa;        /* Light gray for subtle backgrounds */
+  --color-light-yellow:  linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  --color-soft-yellow: #fff8e1;     /* Medium gray for sections */
+  --orange-main: #f39c12;     /* for background floating shape design */
+  --orange-light: #fde3a7;
+
+  /* Text & Neutral */
+  --color-blue :#003366;
+  --color-text: #333333;            /* Dark gray for body text */
+  --color-text-light: #ffffff;      /* White text for dark backgrounds */
+  --color-text-muted: #4b5563;     /* Muted gray for secondary text */ 
+  --color-white: #ffffff;           /* Clean white */
+  --color-charcoal: #495057;        /* Charcoal for subtle text */
+  --color-deep-brown: #2C2416;      /* Deep brown for special text */
+  --color-red : #d03;
+
+
+  /* Gradients - for gray theme 
+  --color-navbar-gradient: linear-gradient(155deg, #ffffcc 0%, #cccc66 80%);
+  --color-card-gradient: linear-gradient(135deg, #8B4513 0%, #704214 100%); */
+  
+}

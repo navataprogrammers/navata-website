@@ -1,0 +1,125 @@
+.franchise-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Main modal box */
+.franchise-modal {
+  background: var(--color-text-light);
+  background: linear-gradient(135deg, #fdfdfd 0%, #f8f3ec 100%);
+  background-size: cover;
+  background-position: center;
+  padding: 2rem 2.5rem;
+  border-radius: 14px;
+  width: 95%;
+  max-width: 650px; 
+  min-height: 500px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  position: relative;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+/* Close button */
+.franchise-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 2rem;
+  color: var(--color-dark);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 2;
+}
+.franchise-modal-close:hover {
+  transform: scale(1.2);
+}
+
+.franchise-modal h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  color: var(--color-dark-brown);
+  border-bottom: 2px solid var(--color-medium-brown);
+  padding-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.franchise-inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.franchise-inquiry-form input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.franchise-inquiry-form input:focus {
+  outline: none;
+  border-color: var(--color-medium-brown);
+  box-shadow: 0 0 5px rgba(200, 150, 100, 0.5);
+}
+
+.franchise-inquiry-form button {
+  background: var(--color-medium-brown);
+  color: var(--color-text-light);
+  padding: 12px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.franchise-inquiry-form button:hover {
+  background: var(--color-dark-brown);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 600px) {
+  .franchise-modal {
+    width: 95%;
+    padding: 1.5rem;
+    max-width: 95%;
+    min-height: auto;
+  }
+  .franchise-modal h2 {
+    font-size: var(--font-subheading);
+  }
+  .franchise-inquiry-form input,
+  .franchise-inquiry-form button {
+    font-size: var(--font-label);
+    padding: 10px;
+  }
+  .franchise-modal-close {
+    font-size: 1.5rem;
+    top: 8px;
+    right: 10px;
+  }
+}

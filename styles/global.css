@@ -1,0 +1,44 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Outer container for layout */
+/* --- Keep your existing styles --- */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* This is the default style for ALL pages.
+   It pushes content down and ensures the footer stays at the bottom. */
+.main-content {
+  flex-grow: 1;
+  padding-top: 80px; 
+}
+
+/* ⭐ THIS IS THE NEW RULE ⭐ */
+/* This rule targets ONLY the homepage's main section
+   and removes the top padding, fixing the navbar design. */
+.main-content.homepage-main {
+  padding-top: 0;
+}
+
+/* --- No other changes needed --- */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

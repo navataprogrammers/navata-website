@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Unified dropdown box */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fafaaa;
+  padding: 8px 0;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(235, 230, 230, 0.2);
+  z-index: 1000;
+  border-radius: 4px;
+  align-items: flex-start;
+  overflow-x: hidden; /* Prevent content from spilling horizontally */
+}
+
+.dropdown-menu li {
+  list-style: none;
+  width: 100%;
+  margin: 0; 
+  padding: 0; 
+}
+
+/* Link styles */
+.dropdown-link {
+  display: block;
+  text-decoration: none;
+  color: var(--color-primary);
+  padding: 8px 12px;
+  font-size: 16px;
+  width: 100%;         /* ensures it fits inside the dropdown */
+  text-align: left;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap; /* prevent text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+/* Hover effect 
+.dropdown-link:hover {
+  color: #daadad;
+} */
+
+/* Mobile responsive */
+@media screen and (max-width: 960px) {
+  .fa-caret-down {
+    display: none;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .dropdown-link {
+    padding: 10px 16px;
+  }
+}
