@@ -130,11 +130,11 @@ const Ecosystem = () => (
               <div className="ecosystem-card-main">
                 <div className="ecosystem-card-title">{concern.name}</div>
 
-                <div className="ecosystem-card-image-wrapper"> {/* Added a wrapper for positioning context */}
+                <div className="ecosystem-card-image-wrapper"> {/*  wrapper for positioning context */}
                   {concern.image && (
                     concern.website ? (
                       <a
-                        href={concern.website}
+                        href={concern.website} 
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Visit ${concern.name} website`}
