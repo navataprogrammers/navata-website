@@ -41,13 +41,6 @@
   text-overflow: ellipsis;
 }
 
-
-
-/* Hover effect 
-.dropdown-link:hover {
-  color: #daadad;
-} */
-
 /* Mobile responsive */
 @media screen and (max-width: 960px) {
   .fa-caret-down {
