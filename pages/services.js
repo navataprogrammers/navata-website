@@ -13,29 +13,36 @@ const iconMap = {
 const ServicesPage = ({ services, valueAdds, process }) => {
   return (
     <div className="services-page">
-      <div className="services-banner">
-        <Image
-          src="/images/sevices_banner.webp"
-          alt="Illustration representing logistics and delivery services"
-          className="hero-bg-img"
-          width={1920}   
-          height={1000} 
-          priority
-        />
-        <div className="services-banner-content">
-          <div className="franchise-hero-circles" />
-          <div className="services-banner-text">
-            <AnimateOnScroll className="scroll-animate" delay={200}>
-              <h1 className="services-main-title">Our Services</h1>
-              <p className="services-subtitle">
-                Comprehensive logistics solutions designed to accelerate your 
-                business growth and expand your possibilities.
-              </p>
-            </AnimateOnScroll>
-          </div>
-        </div>
+    <div className="services-banner">
+      <svg width="0" height="0" style={{ position: 'absolute' }}>
+        <defs>
+          <clipPath id="myCurve" clipPathUnits="objectBoundingBox">
+            <path d="M 0 0 L 0.8 0 Q 1 0.5, 0.8 1 L 0 1 Z"></path>
+          </clipPath>
+        </defs>
+      </svg>   
+      <Image
+        src="/images/IMG_5313 edited.jpg"
+        alt="Illustration representing logistics and delivery services"
+        className="hero-bg-img"
+        fill
+        priority
+      />
+      {/* Left overlay */}
+      <div className="services-banner-overlay"></div>
+
+      {/* Text content */}
+      <div className="services-banner-text">
+        <AnimateOnScroll className="scroll-animate" delay={200}>
+          <h1 className="services-main-title">OUR SERVICES</h1>
+          <p className="services-subtitle">
+           Comprehensive logistics solutions designed to accelerate your business
+           growth and expand your possibilites.
+          </p>
+        </AnimateOnScroll>
       </div>
-      
+    </div>
+  
       {/* Core Services Section */}
       <div className="services-main">
         <div className="services-container">
