@@ -82,7 +82,7 @@ export async function getStaticProps() {
     },
     {
       id: 2,
-      title: "Featured on Business Connect",
+      title: "Featured in Business Connect",
       description:
         "Recognized by Business Connect for redefining logistics excellence with customer-centric services and technology-driven solutions across India.",
       image: "/images/media_page/Business_Connect.jpeg",
@@ -95,6 +95,15 @@ export async function getStaticProps() {
         "Highlighted in the Times of India’s ‘Viksit Bharat’ feature for contributing to India’s growth story through reliable, sustainable, and nationwide logistics operations.",
       image: "/images/media_page/TOI.jpg",
       link: "/images/media_page/NAVATA_TOI.pdf",
+    },
+    {
+      id: 4,
+      title: "Featured in Forbes",
+      description: 
+       "Recognized by Forbes as Promising brands in India",
+      image:"/images/media_page/forbes.png",
+      link: "/images/media_page/Forbes Listed.htm",
+
     },
   ];
 
