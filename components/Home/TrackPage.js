@@ -1,20 +1,17 @@
 "use client";
-
 import React, { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
-import Tracking
- from "./Tracking";
-// Helper to format date for the API
-const formatDateForAPI = (isoDate) => {
-  if (!isoDate) return "";
-  const date = new Date(isoDate);
-  return new Intl.DateTimeFormat('en-GB', {
-    day: '2-digit', month: 'numeric', year: 'numeric',
-  }).format(date);
+import Tracking from "./Tracking"; 
+
+const parseDateFromURL = (dateStr) => {
+  if (!dateStr || !/^\d{2}\/\d{2}\/\d{4}$/.test(dateStr)) return null;
+  const [day, month, year] = dateStr.split('/');
+  // Note: month is 0-indexed in JavaScript Date, so we subtract 1
+  return new Date(year, month - 1, day);
 };
 
 const TrackPage = () => {
-  const [formData, setFormData] = useState({ waybillno: "", date: "" });
+  const [initialData, setInitialData] = useState({ waybillno: "", date: null });
   const [trackingData, setTrackingData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -31,7 +28,10 @@ const TrackPage = () => {
     setLoading(true);
     setTrackingData(null);
 
-    const formattedDate = formatDateForAPI(data.date);
+    const formattedDate = `${String(data.date.getDate()).padStart(2, "0")}/${String(
+      data.date.getMonth() + 1
+    ).padStart(2, "0")}/${data.date.getFullYear()}`;
+    
     const queryParam = `${data.waybillno}:${formattedDate}`;
 
     try {
@@ -53,29 +53,24 @@ const TrackPage = () => {
 
   useEffect(() => {
     const waybillno = searchParams.get('waybillno');
-    const date = searchParams.get('date');
-
-    if (waybillno && date) {
-      const initialData = { waybillno, date };
-      setFormData(initialData);
-      handleTrackSubmit(initialData);
+    const dateStr = searchParams.get('date'); 
+    if (waybillno && dateStr) {
+      const parsedDate = parseDateFromURL(dateStr);
+      if (parsedDate) {
+        const dataFromUrl = { waybillno, date: parsedDate };
+        setInitialData(dataFromUrl);
+        handleTrackSubmit(dataFromUrl);
+      }
     }
   }, [searchParams, handleTrackSubmit]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value.toUpperCase() }));
-  };
-
   return (
     <div className="track-page-container">
-      <h1>Track Your Shipment</h1>
       <div className="track-container">
         <Tracking
-          formData={formData}
-          setFormData={setFormData}
+          initialData={initialData}
+          onSubmit={handleTrackSubmit}
           isLoading={loading}
-          onSubmit={() => handleTrackSubmit(formData)}
         />
       </div>
 

@@ -1,14 +1,23 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 import { Barcode, Calendar } from "lucide-react";
+import DatePicker from "react-datepicker";
+// Base styles (required)
+import "react-datepicker/dist/react-datepicker.css";
+// Your custom styles that override the base
 import "../../styles/Tracking.css";
 
-const Tracking = () => {
+const Tracking = ({ initialData, onSubmit, isLoading }) => {
   const [waybillno, setWaybillno] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(null);
   const [error, setError] = useState(null);
-  const router = useRouter();
+
+  useEffect(() => {
+    if (initialData) {
+      setWaybillno(initialData.waybillno || "");
+      setDate(initialData.date ? new Date(initialData.date) : null);
+    }
+  }, [initialData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,9 +26,7 @@ const Tracking = () => {
       setTimeout(() => setError(null), 3000);
       return;
     }
-
-    const params = new URLSearchParams({ waybillno, date });
-    router.push(`/track?${params.toString()}`);
+    onSubmit({ waybillno, date });
   };
 
   return (
@@ -36,13 +43,22 @@ const Tracking = () => {
         </div>
         <div className="input-group">
           <Calendar />
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+          <DatePicker
+            selected={date}
+            onChange={(date) => setDate(date)}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="Select Date (DD/MM/YYYY)"
+            autoComplete="off"
+            showMonthDropdown
+            // Make sure these 3 props are present for the year dropdown
+            showYearDropdown
+            yearDropdownItemNumber={15}
+            scrollableYearDropdown
           />
         </div>
-        <button type="submit">Track</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Tracking..." : "Track"}
+        </button>
       </form>
       {error && <div className="popup error">{error}</div>}
     </div>
