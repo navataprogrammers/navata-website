@@ -33,8 +33,8 @@ const AboutUsPage = ({ achievements, milestones }) => {
       <FounderSection />
       <VisionMissionSection />
       <TeamValuesSection />
-      <MilestonesSection milestones={milestones} />
       <AchievementsSection achievements={achievements} />
+      <MilestonesSection milestones={milestones} />
     </div>
   );
 };

@@ -11,10 +11,10 @@ const FranchisePage = ({ initialFranchises, initialStates }) => {
   const [filteredFranchises, setFilteredFranchises] = useState(initialFranchises);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFranchise, setSelectedFranchise] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // ✅ fixed missing state
+  const [isLoading, setIsLoading] = useState(false); 
 
   useEffect(() => {
-    // simple filter by state
+    //  filter by state
     const filtered =
       selectedState === "All"
         ? initialFranchises
@@ -88,7 +88,6 @@ const FranchisePage = ({ initialFranchises, initialStates }) => {
         {/* Franchise list */}
         <div className="franchise-opps-grid">
           {isLoading ? (
-            // ✅ skeleton loading state
             Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="card-franchise-skeleton">
                 <div className="card-image-wrap-skeleton"></div>

@@ -6,39 +6,33 @@ import "../styles/HomePage.css";
 import FreightForm from "../components/Home/Freightform";
 import TrackForm from "../components/Home/Tracking";
 import CompanyValues from "../components/Home/CompanyValues";
-
+import LatestUpdate from "../components/Home/latestUpdates";
 
 const HomePage = () => {
-  // This state now controls the visibility of the Track and Pay tabs
   const [activeTab, setActiveTab] = useState(null);
+  const [activeButton, setActiveButton] = useState(null); // tracks hovered/active button
   const router = useRouter();
 
-  // Opens payment links in a new tab
   const handleRedirect = useCallback((type) => {
-    let url = '';
-    if (type === 'single') {
-      url = 'https://online.navata.com/wbillpayments/Epaymenticici.htm';
-    } else {
-      url = 'https://online.navata.com/wbillpayments/Epaymenticicimany.htm';
-    }
+    const url = type === 'single'
+      ? 'https://online.navata.com/wbillpayments/Epaymenticici.htm'
+      : 'https://online.navata.com/wbillpayments/Epaymenticicimany.htm';
     window.open(url, '_blank', 'noopener,noreferrer');
+     setActiveTab(null);
+     setActiveButton(null);
   }, []);
 
-  // Navigates to the branch locator page
   const handleBranchRedirect = useCallback(() => {
     router.push('/branch');
   }, [router]);
 
-  // Toggles the active tab for 'Track' and 'Pay'
   const handleTabClick = useCallback((tabName) => {
-    setActiveTab(prevActiveTab => (prevActiveTab === tabName ? null : tabName));
+    setActiveTab(prev => (prev === tabName ? null : tabName));
   }, []);
-     
+
   return (
     <div className="homepage">
-      <div 
-        className={`hero-wrapper ${activeTab === 'track' ? 'form-active' : ''}`}
-      >
+      <div className={`hero-wrapper ${activeTab === 'track' ? 'form-active' : ''}`}>
         <Image
           src="/images/Home_page.webp"
           alt="Hero Background"
@@ -47,27 +41,48 @@ const HomePage = () => {
           className="home-bg-img"
           priority
         />
-
         <div className="hero-overlay" />
         <div className="hero-content">
-           <h1>Empower your business to reach every corner with reliable and caring logistics</h1>
-           <div className="hero-buttons icon-buttons-grid">
-            
+          <h1>Empower your business to reach every corner with reliable and caring logistics</h1>
+          <div className="hero-buttons icon-buttons-grid">
+
             {/*--- Freight Button ---*/}
-            <div className="icon-button" onClick={() => router.push('/freight-cal')}>
+            <div
+              className={`icon-button ${activeButton === 'freight' ? 'active' : ''}`}
+              onClick={() => router.push('/freight-cal')}
+              onMouseEnter={() => setActiveButton('freight')}
+              onMouseLeave={() => setActiveButton(null)}
+            >
               <Truck className="icon-button__icon" />
               <span className="icon-button__text">Freight</span>
             </div>
-            
+
             {/*--- Track Button ---*/}
-            <div id = "track-button" className="icon-button" onClick={() => handleTabClick('track')}>
+            <div
+              id="track-button"
+              className={`icon-button ${
+                activeButton === 'track'
+                  ? 'active'
+                  : (activeButton && activeButton !== 'track') || activeTab === 'pay'
+                  ? 'inactive'
+                  : ''
+              }`}
+              onClick={() => handleTabClick('track')}
+              onMouseEnter={() => setActiveButton('track')}
+              onMouseLeave={() => setActiveButton(null)}
+            >
               <Search className="icon-button__icon" />
               <span className="icon-button__text">Track</span>
             </div>
 
-            {/*--- Pay Button with Dropdown ---*/}
-            <div className="icon-button-wrapper" style={{ position: 'relative' }}>
-              <div className="icon-button" onClick={() => handleTabClick('pay')}>
+            {/*--- Pay Button ---*/}
+            <div className="icon-button-wrapper">
+              <div
+                className={`icon-button ${activeButton === 'pay' ? 'active' : ''}`}
+                onClick={() => handleTabClick('pay')}
+                onMouseEnter={() => setActiveButton('pay')}
+                onMouseLeave={() => setActiveButton(null)}
+              >
                 <CreditCard className="icon-button__icon" />
                 <span className="icon-button__text">Pay</span>
               </div>
@@ -80,21 +95,26 @@ const HomePage = () => {
             </div>
 
             {/*--- Locate Button ---*/}
-            <div className="icon-button" onClick={handleBranchRedirect}>
+            <div
+              className={`icon-button ${activeButton === 'locate' ? 'active' : ''}`}
+              onClick={handleBranchRedirect}
+              onMouseEnter={() => setActiveButton('locate')}
+              onMouseLeave={() => setActiveButton(null)}
+            >
               <MapPin className="icon-button__icon" />
               <span className="icon-button__text">Locate</span>
             </div>
 
           </div>
         </div>
-        
-        {/* Conditionally rendered form for tracking */}
-        {activeTab === 'track' && <TrackForm />}
 
+        {/* Conditionally rendered Track form */}
+        {activeTab === 'track' && <TrackForm />}
       </div>
-      
-      {/* Company Values section below the fold */}
+
+      {/* Company Values section */}
       <CompanyValues />
+      <LatestUpdate />
     </div>
   );
 };
