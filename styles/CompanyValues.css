@@ -61,7 +61,7 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(0);
   overflow: hidden;
-  margin: 0 auto;        /* Center each card horizontally */
+  margin: 0 auto;        
 }
 
 

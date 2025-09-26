@@ -1,7 +1,7 @@
 .footer {
   background-color: #404040;
   color: #ffffff;
-  padding: 10px 20px 5px; /* Decreased top and bottom padding */
+  padding: 10px 20px 5px;
 }
 
 .footer-bottom {
@@ -11,7 +11,7 @@
   margin-top: 10px;
 }
 .footer-wrapper {
-  position: relative; /* parent container for positioning */
+  position: relative;
 }
 :root {
   --color-brand-yellow: #FFD700;
@@ -78,9 +78,8 @@
   padding: 6px 8px;
   text-align: center;
   transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  /* Note: backdrop-filter can be resource-intensive on some devices. */
   backdrop-filter: blur(8px);
-  height: 100%; /* Ensure cards in the same row are the same height */
+  height: 100%; 
 }
 
 .contact-card:hover {
@@ -190,7 +189,7 @@
   color: var(--color-text-light);
   font-size: 0.85rem;
   backdrop-filter: blur(8px);
-  box-sizing: border-box; /* Ensures padding is included in width */
+  box-sizing: border-box; 
 }
 
 .form-textarea {
@@ -226,7 +225,6 @@
   cursor: not-allowed;
 }
 
-/* New Submission Status Message Styles */
 .submission-message {
   display: flex;
   align-items: center;
@@ -275,7 +273,7 @@
   transform: scale(1.1) translateY(-3px);
 }
 
-/* Truck Animation - OPTIMIZED */
+/* Truck Animation  */
 .truck-animation-container {
   position: absolute;
   top: -50px;                 
@@ -289,7 +287,7 @@
 
 @keyframes moveTruck {
   from { transform: translateX(-200px); }
-  to { transform: translateX(100vw); } /* Use viewport width for full travel */
+  to { transform: translateX(100vw); }
 }
 
 @keyframes fadeInUp {

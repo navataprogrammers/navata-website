@@ -85,7 +85,7 @@
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-.careers-fade-in-up.animate {
+.careers-fade-in-up.active {
   opacity: 1;
   transform: translateY(0);
 }
@@ -94,7 +94,7 @@
   transform: scale(0.9);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-.careers-scale-in.animate {
+.careers-scale-in.active {
   opacity: 1;
   transform: scale(1);
 }
@@ -155,9 +155,9 @@
   padding: 18px;
   align-items: stretch;
   max-width: 100% !important; 
-  width: 100vw;   /* full viewport width */
-  margin: 0;      /* remove side margins */
-  box-sizing: border-box; /* include padding in width */
+  width: 100vw;   
+  margin: 0;      
+  box-sizing: border-box; 
 
 }
 
@@ -198,7 +198,7 @@
   transform: translateY(-8px);
 }
 
-/* Department Title (was .careers-job-title) */
+/* Department Title */
 .careers-job-title {
   font-size: var(--font-subheading);
   font-weight: 600;

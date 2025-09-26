@@ -1,5 +1,4 @@
-// pages/careers/job/[juid].js
-import { useRouter } from 'next/router'; // Replaces useNavigate, useParams
+import { useRouter } from 'next/router'; 
 import Head from 'next/head';
 import { ArrowLeft, Building, MapPin } from 'lucide-react';
 import { fetchJobsFromAPI, parseListField } from '../../../lib/JobUtils';
@@ -11,13 +10,11 @@ export async function getStaticPaths() {
   const paths = jobs.map(job => ({
     params: { juid: job.juid },
   }));
-
-  // 'blocking' ensures that if a new job is added, Next.js will
+  // 'blocking' ensures that if a new job is added,
   // generate the page on the first request, preventing a 404.
   return { paths, fallback: 'blocking' };
 }
 
-// 🧠 2. This function fetches the data for a SINGLE job page.
 export async function getStaticProps({ params }) {
   const jobs = await fetchJobsFromAPI();
   const job = jobs.find(j => j.juid === params.juid);
@@ -30,11 +27,10 @@ export async function getStaticProps({ params }) {
   // The 'job' object is passed as a prop to your component.
   return {
     props: { job },
-    revalidate: 60 * 60, // Optional: Re-fetches data every hour
+    revalidate: 60 * 60, // Re-fetches data every hour
   };
 }
 
-// 🧠 3. Your component is now much simpler. It just receives the 'job' prop.
 const JobDetail = ({ job }) => {
   const router = useRouter();
   const requirements = parseListField(job.requirements || '');
@@ -43,8 +39,6 @@ const JobDetail = ({ job }) => {
     router.push('/careers');
   };
 
-  // No more useState or useEffect for data fetching is needed!
-  // If the page is loading (due to fallback), Next.js handles it.
   if (router.isFallback) {
     return <div>Loading job details…</div>;
   }
@@ -57,7 +51,6 @@ const JobDetail = ({ job }) => {
       </Head>
 
       <div className="job-detail-main-page">
-        {/* Decorative elements remain the same */}
         <div className="decorative-elements">
           {[...Array(8)].map((_, i) => (
             <div key={i} className="floating-shape"></div>

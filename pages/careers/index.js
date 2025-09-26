@@ -1,13 +1,12 @@
-// pages/careers/index.js
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'; // Replaces useNavigate
-import Head from 'next/head'; // For SEO
+import { useRouter } from 'next/router'; 
+import Head from 'next/head';
 import { Search } from 'lucide-react';
 import HRContactSection from '../../components/careers/HrContactSection';
 import JobsByDepartment from '../../components/careers/JobsByDepartment';
 import AnimateOnScroll from '../../components/AnimateonScroll'; 
 import { fetchJobsFromAPI } from '../../lib/JobUtils';
-import '../../styles/Careers.css'; // Import CSS
+import '../../styles/Careers.css';
 
 
 export async function getStaticProps() {
@@ -15,7 +14,7 @@ export async function getStaticProps() {
     const jobs = await fetchJobsFromAPI();
     return {
       props: { jobs },
-      revalidate: 3600, // Optional: Re-generates the page every hour
+      revalidate: 3600, // Re-generates the page every hour
     };
   } catch (error) {
     return { props: { jobs: [], error: 'Failed to load job listings.' } };
@@ -25,13 +24,12 @@ export async function getStaticProps() {
 const CareersPage = ({ jobs: initialJobs, error: initialError }) => {
   const [jobs, setJobs] = useState(initialJobs);
   const [filteredJobs, setFilteredJobs] = useState(initialJobs);
-  const [loading, setLoading] = useState(false); // Loading is false initially
+  const [loading, setLoading] = useState(false); 
   const [error, setError] = useState(initialError);
   const [locationSearch, setLocationSearch] = useState('');
-  const router = useRouter(); // Next.js router hook
+  const router = useRouter();
 
   useEffect(() => {
-    // Client-side filtering logic remains the same
     if (!locationSearch) {
       setFilteredJobs(jobs);
       return;
@@ -46,8 +44,6 @@ const CareersPage = ({ jobs: initialJobs, error: initialError }) => {
   }, [locationSearch, jobs]);
 
   const handleViewDetails = (job) => {
-    // Navigate using the Next.js router. We no longer pass state.
-    // The details page will fetch its own data based on the URL parameter.
     router.push(`/careers/job/${job.juid}`);
   };
 
@@ -58,7 +54,7 @@ const CareersPage = ({ jobs: initialJobs, error: initialError }) => {
         <meta name="description" content="Explore open job positions and build the future with us." />
       </Head>
       <div className="careers-main-page">
-        {/* Top Banner Section (No changes here) */}
+        {/* Top Banner Section  */}
         <div className="careers-top-banner">
           <img
             src="/images/careers.webp"
@@ -83,7 +79,7 @@ const CareersPage = ({ jobs: initialJobs, error: initialError }) => {
           <div className="careers-section-container">
             <h2 className="careers-section-title">Open Positions</h2>
 
-            {/* Search (No changes here) */}
+            {/* Search */}
             <div className="careers-search-container">
               <div className="careers-search-input-wrapper">
                 <Search className="careers-search-icon" size={20} />
