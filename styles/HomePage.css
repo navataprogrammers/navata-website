@@ -29,22 +29,6 @@
   bottom: 30px;
 }
 
-
-/*
-.hero-content {
-  position: relative;
-  bottom: 30px;
-  right: 25%; 
-  z-index: 1;
-  padding: 0.5rem;
-  max-width: 700px;
-  text-align: center;
-  animation: both fadeInUp 1s ease-in-out;
-  transition: bottom 0.5s ease;
-  margin-left: auto;
-  margin-right: auto;
-}*/
-
 .home-bg-img {
   width: 100%;
   height: 100%;
@@ -55,7 +39,6 @@
   z-index: -2;
 }
 
-/* When form is active,  remove the 'bottom' offset */
 .hero-wrapper.form-active .hero-content {
     bottom: 0;
 }
@@ -68,48 +51,6 @@
   line-height: 1.2;
 }
 
-/*.hero-wrapper {
-  margin-top: 0;
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  overflow: hidden;
-  flex-direction: column;
-}
-.home-bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;   
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -2;
-}
-
-/* hero content 
-.hero-content {
-  position: relative;
-  /*background: rgba(0, 0, 0,0.6); /* semi-transparent black 
-  bottom: 30px;
-  right: 25%;
-  z-index: 1;
-  padding: 0.5rem;
-  max-width: 700px;
-  text-align: center;
-  animation: both fadeInUp 1s ease-in-out;
-}
-
-.hero-content h1 {
-  color: var(--color-primary);
-  font-size: 28px;  
-  font-weight: 500;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
 
 /* Icon buttons grid layout */
 .icon-buttons-grid {
@@ -137,18 +78,20 @@
   border: 2px solid transparent;
 }
 
-.icon-button__icon {
-  font-size: 4rem;
-  margin-bottom: 10px;
+#track-button {
+  background-color: var(--color-yellow);
+  color: var(--color-blue);
+  transition: all 0.3s ease;
+}
+
+/* Track inactive when another button is hovered/active */
+#track-button.inactive {
+  background-color: white;
   color: var(--color-blue);
 }
 
-.icon-button__text {
-  font-weight: 600;
-  font-size: var(--font-text);
-  color: var(--color-blue);
-}
-
+/* Hover or active for any button */
+.icon-button.active,
 .icon-button:hover {
   background-color: var(--color-yellow);
   color: var(--color-primary);
@@ -156,19 +99,23 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.icon-button:hover .icon-button__icon {
-  color: var(--color-primary);
+/* Icon and text */
+.icon-button__icon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color: var(--color-blue);
+}
+.icon-button__text {
+  font-weight: 600;
+  font-size: var(--font-text);
+  color: var(--color-blue);
 }
 
-.icon-button:hover .icon-button__text {
-  color: var(--color-primary);
-}
-
+/* Payment dropdown */
 .icon-button-wrapper {
   position: relative;
   display: inline-block;
 }
-
 .payment-options {
   position: absolute;
   top: 110%;
@@ -184,7 +131,6 @@
   min-width: 160px;
   animation: fadeIn 0.3s ease-in-out;
 }
-
 .payment-options button {
   background: none;
   border: none;
@@ -196,11 +142,11 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
 .payment-options button:hover {
   background-color: var(--color-yellow);
   color: black;
 }
+
 @media (max-width: 1024px) {
   .hero-content {
     right: 10%;             
