@@ -1,5 +1,4 @@
-"use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 // Custom Hook
 const useIntersectionObserver = (options) => {
@@ -12,7 +11,7 @@ const useIntersectionObserver = (options) => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
-        observer.unobserve(entry.target); // only once
+        observer.unobserve(entry.target); // observe once
       }
     }, options);
 
@@ -26,21 +25,17 @@ const useIntersectionObserver = (options) => {
   return [setRef, isVisible];
 };
 
-export default function AnimateOnScroll({
-  children,
-  className = "",
-  threshold = 0.1,
-  delay = 0,
-}) {
+// AnimateOnScroll Component
+const AnimateOnScroll = ({ children, className = '', threshold = 0.1, delay = 0 }) => {
   const [setRef, isVisible] = useIntersectionObserver({ threshold });
-
   return (
     <div
       ref={setRef}
-      className={`${className} animate-fade-up ${isVisible ? "active" : ""}`}
+      className={`${className} animate-fade-up ${isVisible ? 'active' : ''}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </div>
   );
-}
+};
+export default AnimateOnScroll;
