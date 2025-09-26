@@ -1,0 +1,74 @@
+.updateSection {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: url('/images/navata-road-transport-6.jpg')  top center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.contentBox {
+  background: rgba(0, 0, 0, 0.15); /* Subtle dark for content area */
+  color: #fff;
+  border-radius: 10px;
+  padding: 32px 24px;
+  text-align: center;
+  min-width: 320px;
+  max-width: 460px;
+  margin: 0 16px;
+}
+
+.heading {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.announcement {
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+.highlight {
+  color: #ffe15c;
+  font-weight: bold;
+}
+
+.details {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.awards {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .updateSection {
+    height: 420px;
+  }
+  .contentBox {
+    padding: 16px 10px;
+    min-width: 90vw;
+    max-width: 98vw;
+  }
+}
