@@ -14,13 +14,7 @@ const ServicesPage = ({ services, valueAdds, process }) => {
   return (
     <div className="services-page">
     <div className="services-banner">
-      <svg width="0" height="0" style={{ position: 'absolute' }}>
-        <defs>
-          <clipPath id="myCurve" clipPathUnits="objectBoundingBox">
-            <path d="M 0 0 L 0.8 0 Q 1 0.5, 0.8 1 L 0 1 Z"></path>
-          </clipPath>
-        </defs>
-      </svg>   
+      
       <Image
         src="/images/IMG_5313 edited.jpg"
         alt="Illustration representing logistics and delivery services"
@@ -29,7 +23,6 @@ const ServicesPage = ({ services, valueAdds, process }) => {
         priority
       />
       {/* Left overlay */}
-      <div className="services-banner-overlay"></div>
 
       {/* Text content */}
       <div className="services-banner-text">
@@ -150,7 +143,7 @@ export async function getStaticProps() {
     title: "Transportation Solutions",
     icon: 'truck',
     description: "Seamless freight movement across regions with real-time tracking and guaranteed delivery schedules.",
-    features: ["GPS Tracking", "360 degree Package Monitoring","Hassle free & Cashless Payments","Intense Reachability"]
+    features: ["Reverse Logistics","Cross Docking","Custom Solutions"]
   },
   {
     id: 2,
@@ -170,9 +163,9 @@ export async function getStaticProps() {
 
   const valueAdds = [
     { title: "Real-Time Tracking", desc: "Monitor your shipments 24/7 with GPS precision" },
-    { title: "Reverse Logistics", desc: "Efficient returns" },
-    { title: "Cross Docking", desc: "Streamlined distribution without storage delays" },
-    { title: "Custom Solutions", desc: "Tailored logistics for your specific needs" }
+    { title: "360 degree Package Monitoring", desc: "Comprehensive monitoring for complete package safety and transparency" }, 
+    { title: "Hassle free & Cashless Payments", desc: "Enjoy seamless transactions with our secure, cashless payment options for all logistics services." },
+    { title: "Intense Reachability", desc: "Benefit from our extensive network ensuring your goods reach even the most remote destinations efficiently." }
   ];
 
   const process = [

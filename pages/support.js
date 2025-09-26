@@ -47,7 +47,6 @@ const SupportPage = ({ faqData, categories }) => {
         />
         <AnimateOnScroll className="scroll-animate" delay={100}>
           <div className="support-header-content">
-            <div className="franchise-hero-circles" />
             <h1 className="support-title">Need Help?</h1>
             <div className="text-overlay">
               <p className="support-desc">
@@ -136,8 +135,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      faqData: JSON.parse(JSON.stringify(faqData)), // make serializable
-      categories: JSON.parse(JSON.stringify(categories)), // make serializable
+      faqData: JSON.parse(JSON.stringify(faqData)), 
+      categories: JSON.parse(JSON.stringify(categories)), 
     },
   };
 }
