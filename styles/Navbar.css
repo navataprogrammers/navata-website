@@ -20,7 +20,6 @@
   background: #fafaaa;
 }
 
-
 .header-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -81,6 +80,7 @@
   text-decoration: none;
   font-weight: 400;
   padding: 5px 0;
+  padding-left: 0;
   background: none;
   border: none;
   cursor: pointer;
@@ -151,7 +151,7 @@
     right: 0;
     background-color: #fafaaa;
     display: none;
-    padding: 20px 0;
+    padding: 20px;
     width: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -165,7 +165,7 @@
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
-    padding-left: 20px;
+    padding: 0;
     width: 100%;
   }
 

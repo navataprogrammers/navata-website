@@ -38,29 +38,28 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      closeAllDropdowns();
-      setIsMenuOpen(false);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 960);
     };
-    router.events.on('routeChangeStart', handleRouteChange);
+    handleResize();
+    window.addEventListener('resize', handleResize);
     return () => {
-      router.events.off('routeChangeStart', handleRouteChange);
+      window.removeEventListener('resize', handleResize);
     };
-  }, [router.events, closeAllDropdowns]);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    const handleResize = () => setIsMobile(window.innerWidth < 960);
-    handleResize();
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
     if (router.pathname === '/') {
       window.addEventListener('scroll', handleScroll);
+      handleScroll();
     } else {
       setScrolled(false);
     }
-    window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
     };
   }, [router.pathname]);
 
@@ -83,8 +82,8 @@ const Navbar = () => {
             src="/images/logo.png"
             alt="Logo"
             priority
-            width= {200}
-            height= {150}
+            width={200}
+            height={200}
             className='logo-img'
           />
         </div>
@@ -94,7 +93,7 @@ const Navbar = () => {
         <nav className={`nav-container ${isMenuOpen ? 'open' : ''}`}>
           <ul className="nav-list">
             <li className="nav-item">
-              <Link href="/services" className="nav-link">Services</Link>
+              <Link href="/services" className="nav-link" onClick={handleItemClick}>Services</Link>
             </li>
             <li className="nav-item">
               <DropdownContainer
@@ -108,10 +107,10 @@ const Navbar = () => {
               />
             </li>
             <li className="nav-item">
-               <Link href="/franchise" className="nav-link">Franchise</Link>
+               <Link href="/franchise" className="nav-link" onClick={handleItemClick}>Franchise</Link>
             </li>
             <li className="nav-item">
-              <Link href="/support" className="nav-link">Support</Link>
+              <Link href="/support" className="nav-link" onClick={handleItemClick}>Support</Link>
             </li>
             <li className="nav-item">
               <DropdownContainer
