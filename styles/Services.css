@@ -27,8 +27,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;       /* Fills entire container */
-  object-position: right;  /* Moves image to the right corner */
+  object-fit: contain;     
+  object-position: right;  
   z-index: 0;
 }
 
@@ -61,7 +61,16 @@
   font-weight: 700;
   color: black;
   margin-bottom: 1.2rem;
-  line-height: 1.2;
+  line-height: 1.2;.services-main-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #f7c948, #b8860b);
+  border-radius: 2px;
+}
   text-transform: uppercase;
   position: relative;
 }
@@ -508,8 +517,6 @@
   100% { transform: translateY(0) scale(1); }
 }
 
-
-
 /* === Value Added Services === */
 .services-value-added {
   padding: 50px 0;
@@ -659,29 +666,51 @@
 /* ===  Responsive Design === */
 @media (max-width: 768px) {
   .services-banner {
+    justify-content: center;
     height: 50vh;
     min-height: 400px;
-  }
-  
-  .services-banner-text {
-    padding: 40px 16px;
+    color: var(--color-white);
   }
 
-  .services-main-title {
-    font-size: 2rem;
-    padding-top: 20px;
+  .services-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
   }
 
-  .services-subtitle {
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-  
   .hero-bg-img {
-    max-width: 95%;            
-    max-height: 90%;           
+    object-fit: cover;
+    object-position: center;
   }
 
+  .services-banner-overlay {
+    display: none; /* Hide the partial overlay on mobile */
+  }
+
+  .services-banner-text {
+    width: 90%;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .services-main-title,
+  .services-subtitle {
+    color: var(--color-white);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+  }
+
+  .services-main-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-white);
+  }
+  
   .services-section-title {
     font-size: 1.75rem;
   }

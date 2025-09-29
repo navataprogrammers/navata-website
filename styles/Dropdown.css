@@ -55,6 +55,6 @@
   }
 
   .dropdown-link {
-    padding: 10px 16px;
+     padding-left: 0;
   }
 }

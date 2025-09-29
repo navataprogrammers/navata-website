@@ -1,51 +1,63 @@
-/* --- Base Layout and Backgrounds --- */
 .support-banner {
-  flex-direction: row-reverse; 
+  flex-direction: row-reverse;
+  width: 100%;
+  height: 65vh;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  flex-wrap: wrap; 
-  gap: 40px;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 50px 16px;
-  min-height: 60vh;
-  height: auto;
+  align-items: center;
 }
+
+.support-image-container {
+  flex: 0 0 50%;
+  height: 100%;
+}
+
 .support-bg-img {
-   flex: 1; 
-  min-width: 300px; 
-  height: 450px; 
-  border-radius: 12px; 
-  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
 .support-header-content {
-  flex: 1; 
-  min-width: 300px; 
-  text-align: left; 
+  flex: 1;
+  text-align: left;
+  padding: 2rem 10rem;
 }
+
 .support-title{
-  padding-top: 0;
   font-size: var(--font-main);
   font-weight: 700;
   color: var(--color-primary);
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
-  text-align: left; 
+  margin-bottom: 16px;
+  text-shadow: none;
+  position: relative;
+}
+.support-title::after{
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #f7c948, #b8860b);
+  border-radius: 2px;
 }
 .support-desc {
-    text-align: left; 
   font-size: var(--font-subheading);
   line-height: 1.6;
   color: var(--color-primary);
-  font-weight: 400;
+  font-weight: 500;
+  text-align: left; 
+  max-width: none;
   animation: fadeInUp 0.8s ease-out 0.3s both;
 }
 
+/* --- Main Content and Backgrounds --- */
 .support-main-bg {
   min-height: 100vh;
-  background: var(--color-light-yellow); 
+  background: var(--color-light-yellow);
   background-size: 140px 80px;
   background-repeat: repeat;
   padding: 4rem 2rem;
@@ -59,7 +71,6 @@
   padding: 0 1rem 4rem;
   animation: fadeInUp 1s ease-out;
 }
-
 
 /* --- Tabs and Content Area --- */
 .support-tabs, .support-content {
@@ -105,7 +116,6 @@
   border-top: none;
   border-radius: 0 0 6px 6px;
 }
-
 
 /* --- Search and Categories --- */
 .support-search-box {
@@ -165,10 +175,9 @@
   color: var(--color-accent);
   font-weight: 600;
   border-color: var(--color-yellow);
-  transform: none; /* Remove bounciness */
+  transform: none;
   box-shadow: 0 0 0 2px var(--color-yellow);
 }
-
 
 /* --- FAQ List --- */
 .support-faq-list {
@@ -181,7 +190,7 @@
   background: var(--color-bg);
   overflow: hidden;
   border-radius: 6px;
-  border-color: #e5e7eb;
+  border: 1px solid #e5e7eb;
   transition: border-color 0.3s, transform 0.3s;
   animation: fadeInFaq 0.5s ease-in-out forwards;
 }
@@ -233,15 +242,14 @@ button[aria-expanded="true"] .support-faq-chevron {
   transform: rotate(90deg);
 }
 
-/* FAQ  */
 .support-faq-answer-wrapper {
   display: grid;
-  grid-template-rows: 0fr; /* Start collapsed */
+  grid-template-rows: 0fr; 
   transition: grid-template-rows 0.5s ease-in-out;
 }
 
 button[aria-expanded="true"] + .support-faq-answer-wrapper {
-  grid-template-rows: 1fr; /* Expand to full height */
+  grid-template-rows: 1fr;
 }
 
 .support-faq-answer {
@@ -263,7 +271,6 @@ button[aria-expanded="true"] + .support-faq-answer-wrapper .support-faq-answer {
   font-style: italic;
   padding: 2rem 0;
 }
-
 
 /* --- Support Ticket Form --- */
 .support-ticket-tab { max-width: 650px; margin: 0 auto; }
@@ -317,43 +324,75 @@ button[aria-expanded="true"] + .support-faq-answer-wrapper .support-faq-answer {
 }
 .support-ticket-send-icon { width: 1.2em; height: 1.2em; }
 
-
 /* --- Ticket Success Message --- */
 .support-ticket-success { text-align: center; padding: 4rem 2rem; animation: fadeIn 0.5s ease-in-out; }
 .support-ticket-success-icon { color: #28a745; width: 4.5rem; height: 4.5rem; margin-bottom: 1.5rem; }
 .support-ticket-success h3 { font-size: var(--font-heading); color: var(--color-secondary); margin-bottom: 0.7rem; }
 .support-ticket-success p { color: var(--color-charcoal); font-size: var(--font-text); }
 
-
 /* --- Keyframe Animations --- */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-/* Slide-in animation for FAQ items */
-@keyframes fadeInFaq {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
+@keyframes fadeInFaq { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
   :root { --font-main: 2.25rem; --font-heading: 1.5rem; }
+  
+  .support-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    padding: 0;
+    color: var(--color-white);
+  }
+
+  .support-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .support-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .support-header-content {
+    position: relative;
+    z-index: 2;
+    padding: 1rem;
+    text-align: center;  
+  }
+
+  .support-title,
+  .support-desc {
+    color: var(--color-white);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  }
+  .support-title::after{
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-white);
+  }
   .support-content { padding: 1.5rem; }
-  .support-banner {height: 50vh;}
 }
 
 @media (max-width: 600px) {
   .support-header { padding: 3rem 1rem 1.5rem; }
-  .support-title { font-size: 2rem; z-index: 5;}
-  .support-desc { font-size: 1rem; }
+  .support-title {  z-index: 5;}
   .support-tab { font-size: 0.9rem; padding: 1rem 0.5rem; }
   .support-form-row { flex-direction: column; gap: 1rem; }
   .support-faq-question-btn { flex-direction: column; align-items: flex-start; gap: 0.75rem; position: relative; }
