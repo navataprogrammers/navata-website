@@ -37,23 +37,23 @@ const SupportPage = ({ faqData, categories }) => {
     <div className="support-root">
       {/* Header */}
       <div className="support-banner">
-        <Image
-          src="/images/Support.webp"
-          alt="Illustration representing support services"
-          width={1000}
-          height={1000}
-          className="support-bg-img"
-          priority
-        />
+        <div className="support-image-container">
+            <Image
+              src="/images/support1.jpg"
+              alt="Illustration representing support services"
+              width={1000}
+              height={1000}
+              className="support-bg-img"
+              priority
+            />
+        </div>
         <AnimateOnScroll className="scroll-animate" delay={100}>
           <div className="support-header-content">
             <h1 className="support-title">Need Help?</h1>
-            <div className="text-overlay">
               <p className="support-desc">
                 Our support team is here to assist you 24/7
               </p>
             </div>
-          </div>
         </AnimateOnScroll>
       </div>
 

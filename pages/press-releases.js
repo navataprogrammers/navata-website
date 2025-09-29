@@ -9,16 +9,17 @@ const MediaPage = ({ mediaData }) => {
     <div className="media-container">
       {/* Hero Section */}
       <div className="media-hero">
-        <Image
-          src="/images/Press_release.webp"
-          alt="Media Page"
-          width={1000}
-          height={1000}
-          className="media-hero-bg"
-          priority
-        />
-        <div className="franchise-hero-circles" />
-        <div className="media-overlay">
+        <div className="media-hero-image-container">
+          <Image
+            src="/images/press-release.jpg"
+            alt="Media Page"
+            width={1000}
+            height={1000}
+            className="media-hero-bg"
+            priority
+          />
+        </div>
+        <div className="media-hero-content">
           <AnimateOnScroll>
             <h1 className="media-title">Media & Press</h1>
             <div className="text-overlay">
@@ -39,7 +40,6 @@ const MediaPage = ({ mediaData }) => {
               className="media-card"
               whileHover={{ scale: 1.05 }}
             >
-              {/* Wrapper div with fixed height for responsive fill images */}
               <div className="media-image-wrapper">
                 <Image
                   src={item.image}

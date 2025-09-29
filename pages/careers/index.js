@@ -49,27 +49,23 @@ const CareersPage = ({ jobs: initialJobs, error: initialError }) => {
 
   return (
     <>
-      <Head>
-        <title>Careers - Join Our Team</title>
-        <meta name="description" content="Explore open job positions and build the future with us." />
-      </Head>
       <div className="careers-main-page">
         {/* Top Banner Section  */}
         <div className="careers-top-banner">
-          <img
-            src="/images/careers.webp"
-            alt="Illustration representing career opportunities"
-            className="careers-bg-img" loading='eager' />
-          <div className="franchise-hero-circles" />
+          <div className="careers-banner-image-container">
+            <img
+              src="/images/bussiness-people-working-team-office.jpg"
+              alt="Illustration representing career opportunities"
+              className="careers-bg-img" loading='eager' 
+            />
+          </div>
           <div className="careers-banner-content">
             <AnimateOnScroll className="careers-fade-in-up">
               <h1 className="careers-banner-title">Join Our Team</h1>
-              <div className='text-overlay'>
               <p className="careers-banner-subtitle">
                 Build the future with us.
                 We're looking for talented individuals who share our passion.
               </p>
-              </div>
             </AnimateOnScroll>
           </div>
         </div>
