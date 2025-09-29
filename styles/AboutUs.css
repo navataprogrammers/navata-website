@@ -598,6 +598,7 @@
   }
   .aboutus-title {font-size: 2rem;}
   /* Subheadings & Text */
+  .aboutus-subtitle,
   .section-subtitle,
   .founder-text,
   .milestone-event,
@@ -608,7 +609,7 @@
     font-size: 0.8rem;
     line-height: 1.4;
   }
-  .aboutus-subtitle { font-size: 1rem;}
+  /*.aboutus-subtitle { font-size: 1rem;} */
 
   .aboutus-title::after {
     left: 50%;

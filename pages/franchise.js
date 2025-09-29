@@ -28,27 +28,26 @@ const FranchisePage = ({ initialFranchises, initialStates }) => {
     <div className="franchise-global">
       {/* Hero Section */}
       <section className="franchise-hero">
-        <Image
-          src="/images/franchise.webp"
-          alt="Franchise opportunities"
-          width={1920}
-          height={600}
-          priority
-          className="franchise-bg-img"
-        />
-        <div className="franchise-hero-circles" />
+        <div className="franchise-hero-image-container">
+            <Image
+                src="/images/franchise.png"
+                alt="Franchise opportunities"
+                width={1920}
+                height={600}
+                priority
+                className="franchise-bg-img"
+            />
+        </div>
         <div className="franchise-hero-content">
           <AnimateOnScroll className="scroll-animate" delay={200}>
             <h1 className="franchise-hero-title">
               Drive Your Future with a Navata Franchise
             </h1>
-            <div className="text-overlay">
               <p className="franchise-hero-desc">
                 We are expanding and looking for dedicated partners to grow with
                 us. Explore available opportunities and start your journey
                 today.
               </p>
-            </div>
           </AnimateOnScroll>
         </div>
       </section>

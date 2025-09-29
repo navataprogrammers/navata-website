@@ -14,7 +14,7 @@ const ServicesPage = ({ services, valueAdds, process }) => {
   return (
     <div className="services-page">
     <div className="services-banner">
-      
+      <div className='services-image-container'>
       <Image
         src="/images/IMG_5313 edited.jpg"
         alt="Illustration representing logistics and delivery services"
@@ -22,6 +22,7 @@ const ServicesPage = ({ services, valueAdds, process }) => {
         fill
         priority
       />
+      </div>
       {/* Left overlay */}
 
       {/* Text content */}
