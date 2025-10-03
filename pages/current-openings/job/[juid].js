@@ -36,7 +36,7 @@ const JobDetail = ({ job }) => {
   const requirements = parseListField(job.requirements || '');
 
   const handleSubmitSuccess = () => {
-    router.push('/careers');
+    router.push('/current-openings');
   };
 
   if (router.isFallback) {

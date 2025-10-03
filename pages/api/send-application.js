@@ -5,8 +5,8 @@ import fs from 'fs';
 const transporter = nodemailer.createTransport({  
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // from .env
-    pass: process.env.EMAIL_PASS  // app password from .env
+    user: process.env.ADMIN_USER, // from .env
+    pass: process.env.ADMIN_PASS  // app password from .env
   }});
 
 export const config = {
@@ -36,10 +36,10 @@ export default async function handler(req, res) {
       await transporter.sendMail({
         from: `"Job Application" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_USER,
-        subject: `New Job Application - ${jobName} (ID: ${jobId})`,
+        subject: `New Job Application - ${jobName} (ID: ${jobId}) From website`,
         html: `
         <p style="text-align:left;">Hello,<br><br>
-        Enquiry Details are as follows:<br><br>
+        Job Details are as follows:<br><br>
         Name: ${firstName} ${lastName}
         Email: ${email}
         Phone: ${phone}

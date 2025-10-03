@@ -3,8 +3,8 @@ import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.ADMIN_USER,
+    pass: process.env.ADMIN_PASS,
   },
 });
 
@@ -20,15 +20,19 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: `"Contact Form" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      subject: 'New Message from Contact Form',
+      subject: 'New Contact enqiry from - Navata website',
       html: `
-        <h3>Contact Form Submission:</h3>
+        <h3>Hello, enquiry details are as follows:</h3>
         <ul>
           <li><strong>Name:</strong> ${name}</li>
           <li><strong>Email:</strong> ${email}</li>
           <li><strong>Mobile:</strong> ${mobile}</li>
           <li><strong>Message:</strong> ${message}</li>
         </ul>
+        Regards,<br>
+        <strong>Web Administrator,</strong><br>
+        Navata Road Transport.<br>
+        URL: https://www.navata.com/<br>
       `,
     });
 

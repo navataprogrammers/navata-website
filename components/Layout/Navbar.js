@@ -93,7 +93,7 @@ const Navbar = () => {
         <nav className={`nav-container ${isMenuOpen ? 'open' : ''}`}>
           <ul className="nav-list">
             <li className="nav-item">
-              <Link href="/services" className="nav-link" onClick={handleItemClick}>Services</Link>
+              <Link href="/our-services" className="nav-link" onClick={handleItemClick}>Services</Link>
             </li>
             <li className="nav-item">
               <DropdownContainer
@@ -107,10 +107,10 @@ const Navbar = () => {
               />
             </li>
             <li className="nav-item">
-               <Link href="/franchise" className="nav-link" onClick={handleItemClick}>Franchise</Link>
+               <Link href="/franchises" className="nav-link" onClick={handleItemClick}>Franchise</Link>
             </li>
             <li className="nav-item">
-              <Link href="/support" className="nav-link" onClick={handleItemClick}>Support</Link>
+              <Link href="/faq" className="nav-link" onClick={handleItemClick}>Support</Link>
             </li>
             <li className="nav-item">
               <DropdownContainer

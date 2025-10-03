@@ -2,12 +2,12 @@ export const MenuItems = {
   company: [
     {
       title: 'About Us',
-      path: '/about',
+      path: '/about-us',
       cName: 'dropdown-link'
     },
     {
       title: 'Careers',
-      path: '/careers',
+      path: '/current-openings',
       cName: 'dropdown-link'
     },
     {

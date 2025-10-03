@@ -3,8 +3,8 @@ import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.ADMIN_USER,
+    pass: process.env.ADMIN_PASS,
   },
 });
 
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: `"Support Inquiry" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      subject: `New Support Ticket: ${category}`,
+      subject: `New Support Ticket: ${category} from website`,
       html: `
         <h3>Support Ticket Details:</h3>
         <ul>
@@ -30,6 +30,10 @@ export default async function handler(req, res) {
           <li><strong>Subject:</strong> ${subject}</li>
           <li><strong>Description:</strong> ${message}</li>
         </ul>
+        Regards,<br>
+        <strong>Web Administrator,</strong><br>
+        Navata Road Transport.<br>
+        URL: https://www.navata.com/<br>
       `,
     });
 

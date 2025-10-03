@@ -11,7 +11,7 @@ const TrackingPage = () => {
         alt="Package route icon" 
         width="50" 
         height="50" 
-        class='track-icon'
+        className='track-icon'
       />
       <Suspense fallback={<div>Loading Tracker...</div>}>
         <TrackPage />

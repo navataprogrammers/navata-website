@@ -3,14 +3,13 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Truck, Search, CreditCard, MapPin } from "lucide-react";
 import "../styles/HomePage.css";
-import FreightForm from "../components/Home/Freightform";
 import TrackForm from "../components/Home/Tracking";
 import CompanyValues from "../components/Home/CompanyValues";
 import LatestUpdate from "../components/Home/latestUpdates";
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState(null);
-  const [activeButton, setActiveButton] = useState(null); // tracks hovered/active button
+  const [activeButton, setActiveButton] = useState(null);
   const router = useRouter();
 
   const handleRedirect = useCallback((type) => {
@@ -23,12 +22,22 @@ const HomePage = () => {
   }, []);
 
   const handleBranchRedirect = useCallback(() => {
-    router.push('/branch');
+    router.push('/branch-locator');
   }, [router]);
 
   const handleTabClick = useCallback((tabName) => {
     setActiveTab(prev => (prev === tabName ? null : tabName));
   }, []);
+  
+  const handleHomepageTrackSubmit = useCallback((data) => {
+    if (data.waybillno && data.date) {
+      const formattedDate = `${String(data.date.getDate()).padStart(2, '0')}/${String(
+        data.date.getMonth() + 1
+      ).padStart(2, '0')}/${data.date.getFullYear()}`;
+      router.push(`/track-consignment?waybillno=${data.waybillno}&date=${formattedDate}`);
+    }
+  }, [router]);
+
 
   return (
     <div className="homepage">
@@ -108,8 +117,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Conditionally rendered Track form */}
-        {activeTab === 'track' && <TrackForm />}
+        {activeTab === 'track' && <TrackForm onSubmit={handleHomepageTrackSubmit} />}
       </div>
 
       {/* Company Values section */}

@@ -2,9 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Barcode, Calendar } from "lucide-react";
 import DatePicker from "react-datepicker";
-// Base styles (required)
 import "react-datepicker/dist/react-datepicker.css";
-// Your custom styles that override the base
 import "../../styles/Tracking.css";
 
 const Tracking = ({ initialData, onSubmit, isLoading }) => {

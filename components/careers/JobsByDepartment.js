@@ -20,7 +20,7 @@ const JobsByDepartment = ({ jobs }) => {
             <ul className="department-job-list">
               {deptJobs.map(job => (
                 <li key={job.id}>
-                <Link href={`/careers/job/${job.juid}`} className="department-job-item">
+                <Link href={`/current-openings/job/${job.juid}`} className="department-job-item">
                   {job.title}
                 </Link>
               </li>
