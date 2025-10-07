@@ -25,6 +25,8 @@ const ClientBrands = () => {
     { id: 21, name: 'Aquasub',        logo: '/images/logos/aquasub.webp' },
     { id: 22, name: 'DR BR',          logo: '/images/logos/DR BR.webp' },
     { id: 23, name: 'Legrand',        logo: '/images/logos/Legrand-logo.webp' },
+    { id: 24, name: 'VGS',            logo: '/images/logos/VGS.jpeg' },
+    { id: 25, name: 'VGS Booklinks',  logo: '/images/logos/VGS_Booklinks.jpeg' },
   ];
 
   const duplicatedBrands = [...brands, ...brands];
