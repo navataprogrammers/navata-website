@@ -64,7 +64,7 @@ const CareersPage = ({ jobs: initialJobs, error: initialError }) => {
               <h1 className="careers-banner-title">Join Our Team</h1>
               <p className="careers-banner-subtitle">
                 Build the future with us.
-                We're looking for talented individuals who share our passion.
+                We&apos;re looking for talented individuals who share our passion.
               </p>
             </AnimateOnScroll>
           </div>
