@@ -87,7 +87,7 @@ const Footer = () => {
           <header className="get-header">
             <h1 className="main-heading">Get in Touch</h1>
             <p className="caption">
-              We'd love to help you with your logistics needs. Feel free to reach out to us.
+              We&apos;d love to help you with your logistics needs. Feel free to reach out to us.
             </p>
           </header>
           

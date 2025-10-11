@@ -39,7 +39,7 @@ const SupportTicketForm = () => {
         <div className="support-ticket-success">
           <CheckCircle className="support-ticket-success-icon" />
           <h3>Ticket Submitted Successfully!</h3>
-          <p>We'll respond to your inquiry within 24 hours.</p>
+          <p>We&apos;ll respond to your inquiry within 24 hours.</p>
         </div>
       ) : (
         <form onSubmit={handleTicketSubmit} className="support-ticket-form">

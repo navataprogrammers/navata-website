@@ -9,7 +9,7 @@ const FounderSection = () => {
       <div className="section-container founder-grid">
         <AnimateOnScroll className="scroll-animate-left">
           <div>
-            <h2 className="section-title founder-title">Our Founder's Legacy</h2>
+            <h2 className="section-title founder-title">Our Founder&apos;s Legacy</h2>
             <div className="founder-card">
               <p className="founder-text">
                 A great visionary, philanthropist and an iconic proof of ‘what a

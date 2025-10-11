@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-const FaqItem = memo(({ faq, isExpanded, onToggle }) => {
+const FaqItemComponent = ({ faq, isExpanded, onToggle }) => {
   return (
     <div className="support-faq-item">
       <button onClick={() => onToggle(faq.id)} className="support-faq-question-btn">
@@ -18,6 +18,8 @@ const FaqItem = memo(({ faq, isExpanded, onToggle }) => {
       )}
     </div>
   );
-});
+};
 
+const FaqItem = memo(FaqItemComponent);
+FaqItem.displayName = 'FaqItem'; // Set a display name for better debugging
 export default FaqItem;

@@ -68,10 +68,10 @@ const NewFranchiseForm = () => {
     <section id="franchise-request-block" className="franchise-request-bg">
       <div className="franchise-request-grid">
         <div className="franchise-request-info">
-          <h2 className="franchise-request-title">Don't See Your Location?</h2>
+          <h2 className="franchise-request-title">Don&apos;t See Your Location?</h2>
           <p className="franchise-request-lead">
             We are always looking to expand into new territories. If you have a
-            location in mind and believe it's a great fit for a Navata
+            location in mind and believe it&apos;s a great fit for a Navata
             franchise, let us know! Fill out the form, and our team will get in
             touch with you.
           </p>
