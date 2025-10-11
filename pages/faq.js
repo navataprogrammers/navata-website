@@ -7,7 +7,7 @@ import AnimateOnScroll from '../components/AnimateonScroll';
 import SupportTicketForm from '../components/support/SupportTicketForm';
 import '../styles/Support.css';
 
-const SupportPage = ({ faqData, categories }) => {
+const SupportPage = ({ faqData, categories,termsAndConditions }) => {
   const [activeTab, setActiveTab] = useState('faq');
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -61,17 +61,20 @@ const SupportPage = ({ faqData, categories }) => {
       <div className="support-main-bg">
         <div className="support-main-container">
           <div className="support-tabs">
-            {['faq', 'ticket'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`support-tab ${activeTab === tab ? 'active' : ''}`}
-              >
-                {tab === 'faq'
-                  ? 'Frequently Asked Questions'
-                  : 'Support Ticket'}
-              </button>
+            {['faq', 'terms', 'ticket'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`support-tab ${activeTab === tab ? 'active' : ''}`}
+            >
+              {tab === 'faq'
+                ? 'Frequently Asked Questions'
+                : tab === 'terms'
+                ? 'Terms & Conditions'
+                : 'Support Ticket'}
+            </button>
             ))}
+
           </div>
 
           <div className="support-content">
@@ -117,6 +120,18 @@ const SupportPage = ({ faqData, categories }) => {
                 </div>
               </div>
             )}
+             {activeTab === 'terms' && (
+              <div className="support-terms-container">
+                <h2 className="support-terms-title">Terms & Conditions</h2>
+                <ul className="support-terms-list">
+                  {termsAndConditions.map((term, index) => (
+                    <li key={index} className="support-term-item">
+                      {term}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              )}
 
             {activeTab === 'ticket' && <SupportTicketForm />}
           </div>
@@ -131,12 +146,13 @@ export default SupportPage;
 export async function getStaticProps() {
   // Import JSON serializable data only
   const data = await import('../components/support/SupportData');
-  const { faqData, categories } = data;
+  const { faqData, categories,termsAndConditions } = data;
 
   return {
     props: {
       faqData: JSON.parse(JSON.stringify(faqData)), 
-      categories: JSON.parse(JSON.stringify(categories)), 
+      categories: JSON.parse(JSON.stringify(categories)),
+      termsAndConditions: JSON.parse(JSON.stringify(termsAndConditions)),
     },
   };
 }

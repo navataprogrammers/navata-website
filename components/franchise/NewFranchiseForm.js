@@ -77,10 +77,10 @@ const NewFranchiseForm = () => {
           </p>
           <div className="franchise-request-imgwrap">
              <Image
-              src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=2070&auto=format&fit=crop"
+              src="/images/new_franchise.jpg"
               alt="Logistics map"
               className="franchise-request-img"
-              width={1920}
+              width={2000}
               height={1000}
               priority
             />

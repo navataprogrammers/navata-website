@@ -58,7 +58,7 @@ const JobDetail = ({ job }) => {
         </div>
 
         {/* Header */}
-        <button onClick={() => router.push('/careers')} className="job-detail-back-button">
+        <button onClick={() => router.push('/current-openings')} className="job-detail-back-button">
           <ArrowLeft size={18}/> Back to Careers
         </button>
         <h1 className="job-detail-main-title">{job.title}</h1>
