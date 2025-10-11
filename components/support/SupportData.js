@@ -91,6 +91,22 @@ export const faqData = [
     }
 ];
 
+export const termsAndConditions = [
+  "1. Firm Receipt : This Firm's Receipt must be surrendered at the destination to the Firm by the Consignee and without its production, the Firm may refuse to deliver the consignment.",
+  "2. The firm has the right to arrange for the transport of the consignments over part or whole of the distance by Road, Rail or Water through their own vehicles or through the vehicles of others.",
+  "3. DELIVERY TO A THIRD PERSON: If the consignee does not himself attend to take delivery, he must endorse on the Firm's receipt. A request for a delivery to be granted to the person whom he wishes it to be delivered.",
+  "4. RE-ADJUSTMENT OF CHARGES The firm has the right of remeasurement or reweighment/reclassification of rates, terminals and other charges, at the place of destination and of collecting before delivery any amount that may have been omitted or under charged.",
+  "5. DEMURRAGE AND WHARFAGE: All goods left in the Firm premises are liable to wharfage and demurrage at the ruling rate of the Firm prevailing from time to time.",
+  "6. The Firm is not liable for any loss or damage in transit.",
+  "7. Subject to the rules and regulations of the Firm, goods are carried at owner's risk.",
+  "8. If the consignee does not produce the original way bill and take delivery of the consignment and if the Consignor produces the original way bill, and demands delivery, the Firm may deliver the goods to the consignor.",
+  "9. If the consignee or the consignor does not take delivery of the consignment as aforesaid, the Firm has got the right of selling the goods. If they are perishables, without notice to the Consignor or Consignee, and if they are not perishables, at any time after one month after receipt of the consignment with notice to the Consignor or Consignee. Out of the realisation of the sale, the Firm is entitled to appropriate the sale charges, demurrage charges, transport charges and other incidental expenses.",
+  "10. Goods will be delivered only at our Office at the destination point.",
+  "11. The Consignor is responsible to provide the forms, documents, declarations, etc., required under law for check by Government authorities at Check-posts and other places, and the Firm is not responsible in the event of the goods being detained or seized or confiscated by such appropriate Government authorities for want of or deficiencies in the said documents or for any other reason.",
+  "12. It is the duty of the Consignor to obtain and furnish at the time of booking itself the requisite permit in the case of commodities liable for Excise duty. The Firm shall not be responsible for any detention or seizure or confiscation of such commodities by any Excise Authorities on suspicion or otherwise.",
+  "13. The court in Vijayawada only shall have jurisdiction in respect of all claims and matters arising out of booking of the consignments or of the entrustment of the goods for transport."
+];
+
 export const categories = [
   'All',
   'Pricing & Charges',
