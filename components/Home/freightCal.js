@@ -51,7 +51,7 @@ const FreightCalculatorPage = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // Restored keyboard navigation logic
+  // keyboard navigation logic
   const handleKeyDown = (field, e) => {
     const { highlighted, options } = autoState[field];
     if (!options.length) return;
@@ -111,7 +111,6 @@ const FreightCalculatorPage = () => {
     }
   }, []); // Empty dependency array because it doesn't depend on component state
 
-  // --- INITIAL LOAD LOGIC ---
   // Runs once on page load if there are URL parameters
   useEffect(() => {
     const source = searchParams.get('source');

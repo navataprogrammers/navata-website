@@ -16,6 +16,7 @@
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
   border: 1px solid var(--color-light-brown);
+  overflow: visible;
 }
 
 .freight-container h3 {
@@ -32,6 +33,7 @@
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1.25rem;
   align-items: flex-end;
+  overflow: visible;
 }
 
 .freight-input {
