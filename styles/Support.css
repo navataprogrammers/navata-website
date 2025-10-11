@@ -65,8 +65,8 @@
   overflow: hidden;
 }
 
-.support-main-container {
-  max-width: 1500px;
+.support-main-container { 
+  max-width: 1700px; 
   margin: 0 auto;
   padding: 0 1rem 4rem;
   animation: fadeInUp 1s ease-out;
@@ -271,6 +271,66 @@ button[aria-expanded="true"] + .support-faq-answer-wrapper .support-faq-answer {
   font-style: italic;
   padding: 2rem 0;
 }
+/* --- Terms & Conditions Section --- */
+.support-terms-container {
+  background: var(--color-bg-light);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.8s ease-out;
+  margin-top: 1rem;
+}
+
+.support-terms-title {
+  font-size: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.support-terms-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #f7c948, #b8860b);
+  border-radius: 2px;
+}
+
+.support-terms-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.support-term-item {
+  background: var(--color-bg);
+  border: 1px solid var(--color-soft-yellow);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  color: var(--color-charcoal);
+  font-size: var(--font-text);
+  line-height: 1.7;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.support-term-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-yellow);
+}
+
+.support-term-item {
+  padding-left: 2.2rem;
+}
+
 
 /* --- Support Ticket Form --- */
 .support-ticket-tab { max-width: 650px; margin: 0 auto; }
@@ -388,6 +448,27 @@ button[aria-expanded="true"] + .support-faq-answer-wrapper .support-faq-answer {
     background: var(--color-white);
   }
   .support-content { padding: 1.5rem; }
+  
+  .support-main-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .support-terms-container {
+    padding: 1.5rem;
+  }
+  .support-terms-title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  .support-terms-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .support-term-item {
+    font-size: 0.95rem;
+    padding: 0.8rem 0.8rem 0.8rem 1rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -397,4 +478,12 @@ button[aria-expanded="true"] + .support-faq-answer-wrapper .support-faq-answer {
   .support-form-row { flex-direction: column; gap: 1rem; }
   .support-faq-question-btn { flex-direction: column; align-items: flex-start; gap: 0.75rem; position: relative; }
   .support-faq-chevron { position: absolute; top: 1.25rem; right: 1rem; }
+
+  .support-terms-container {
+    padding: 1.5rem 1rem;
+  }
+  .support-term-item {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
 }
