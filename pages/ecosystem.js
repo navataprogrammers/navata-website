@@ -8,9 +8,10 @@ import AnimateOnScroll from '../components/AnimateonScroll';
 
 const socialResponsibilityData = [
   {
-    title: "Pravataneni Subhas Chandra Bose Memorial Trust",
+    title: "Parvathaneni Subhas Chandra Bose Memorial Trust",
     icon: <Heart className="ecosystem-card-icon" />,
     description: "Established in 1996, the trust embodies the vision of giving back to society through education, healthcare, and skill development. It creates opportunities and supports communities that have been part of our journey.",
+    image: "/images/Ecosystem/pscb-trust.jpg",
     stats: null,
     details: null,
     awards: null
@@ -19,6 +20,7 @@ const socialResponsibilityData = [
     title: "Free Dispensary",
     icon: <Stethoscope className="ecosystem-card-icon" />,
     description: "A free dispensary is started in Asia's biggest Autonagar, Vijayawada, to provide first aid to 80,000 workers employed in Autonagar at times of need.",
+    image: "/images/Ecosystem/free-dispensary.jpg",
     stats: "Serving 80,000+ workers",
     details: "Located in Autonagar, Vijayawada",
     awards: null
@@ -27,6 +29,7 @@ const socialResponsibilityData = [
     title: "Educational Scholarships",
     icon: <GraduationCap className="ecosystem-card-icon" />,
     description: "Inception of Education Scholarships to blood relatives of agents, employees and hamalies of Navata Road Transport. It is implemented to support and encourage education as cherished by our founder.",
+    image: "/images/Ecosystem/scholarships.jpg",
     stats: "Rs.1.20 Crore awarded to 7,467 students",
     details: "From 7th class to Post Graduation level",
     awards: null,
@@ -35,6 +38,7 @@ const socialResponsibilityData = [
     title: "PSC Bose Memorial Driving School",
     icon: <Car className="ecosystem-card-icon" />,
     description: "The trust runs a driving school with the motto 'Come with a uniform and leave as a driving professional'. Located on NH 9, at Munagacherla Village near Nandigama.",
+    image: "/images/Ecosystem/driving-school.jpg",
     stats: "108 acres driving track",
     details: "World class facilities with free training, lodging and boarding",
     awards: ["IRTE Award", "Prince Michael International Road Safety Award (UK) - 2005"]
@@ -91,6 +95,16 @@ const Ecosystem = () => (
               <div className="ecosystem-card-icon-wrapper">{item.icon}</div>
               <div className="ecosystem-card-main">
                 <div className="ecosystem-card-title">{item.title}</div>
+                {item.image && (
+                  <div className="ecosystem-card-image-wrapper">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="ecosystem-card-img"
+                    />
+                  </div>
+                )}
                 <div className="ecosystem-card-desc">{item.description}</div>
                 {item.stats && (
                   <div className="ecosystem-card-feature">
