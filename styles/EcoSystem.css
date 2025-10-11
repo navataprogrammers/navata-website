@@ -115,11 +115,12 @@
   width: 100%;
   height: 200px;
   margin-bottom: 1rem;
+  border-radius: 8px; 
+  overflow: hidden; 
 }
 .ecosystem-card-img {
-  width: 100%; height: auto; max-height: 200px; object-fit: cover;
-  border-top-left-radius: 12px; border-top-right-radius: 12px;
-  margin-bottom: 1rem;
+  object-fit: cover; 
+  border-radius: 8px; 
 }
 .ecosystem-card-feature .mr-1, .ecosystem-card-feature .mr-2 {
   color: var(--color-secondary);
