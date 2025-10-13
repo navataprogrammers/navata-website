@@ -8,7 +8,13 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
 export default async function handler(req, res) {
+  // DEBUGGING: Check if environment variables are loaded
+  console.log('Checking Environment Variables...');
+  console.log('ADMIN_USER:', process.env.ADMIN_USER);
+  console.log('Has ADMIN_PASS value:', !!process.env.ADMIN_PASS); // Check for existence
+
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST']);
     return res.status(405).end(`Method ${req.method} Not Allowed`);
