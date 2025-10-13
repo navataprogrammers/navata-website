@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
   try {
     await transporter.sendMail({
-      from: `"Contact Form" <${process.env.EMAIL_USER}>`,
+      from: `"Contact Form" <${process.env.ADMIN_USER}>`,
       to: process.env.EMAIL_USER,
       subject: 'New Contact enqiry from - Navata website',
       html: `
