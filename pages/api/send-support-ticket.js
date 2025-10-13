@@ -39,7 +39,12 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: 'Support inquiry sent successfully' });
   } catch (error) {
-    console.error('API Route Error:', error);
-    res.status(500).json({ message: 'Failed to send support inquiry' });
-  }
+  console.error("API Route Error Details:", error);
+  res.status(500).json({
+    message: 'Failed to send contact form',
+    error: error.message,
+    stack: error.stack,
+  });
+}
+
 }
