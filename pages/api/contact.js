@@ -1,12 +1,15 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  secure: true,
   auth: {
     user: process.env.ADMIN_USER,
     pass: process.env.ADMIN_PASS,
   },
 });
+
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
