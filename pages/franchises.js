@@ -14,15 +14,15 @@ const FranchisePage = ({ initialFranchises, initialStates }) => {
   const [isLoading, setIsLoading] = useState(false); 
 
   useEffect(() => {
-    //  filter by state
-    const filtered =
-      selectedState === "All"
-        ? initialFranchises
-        : initialFranchises.filter(
-            (f) => f.franchise.split(" -")[0].trim() === selectedState
-          );
-    setFilteredFranchises(filtered);
-  }, [selectedState, initialFranchises]);
+  const filtered =
+    selectedState === "All"
+      ? initialFranchises
+      : initialFranchises.filter((f) => {
+          const stateName = f.franchise.split(/\s*-\s*/)[0].trim();
+          return stateName === selectedState;
+        });
+  setFilteredFranchises(filtered);
+}, [selectedState, initialFranchises]);
 
   return (
     <div className="franchise-global">
@@ -163,7 +163,7 @@ export async function getStaticProps() {
 
     const stateList = [
       "All",
-      ...new Set(sortedData.map((f) => f.franchise.split(" -")[0].trim())),
+      ...new Set(sortedData.map((f) => f.franchise.split(/\s*-\s*/)[0].trim())),
     ];
 
     return {

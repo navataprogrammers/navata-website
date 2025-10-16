@@ -360,6 +360,13 @@
   }
 }
 
+/* Medium screens (tablets) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .franchise-opps-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (min-width:960px) {
   .franchise-request-grid {
     grid-template-columns:1fr 1.3fr;
@@ -418,7 +425,7 @@
     background: var(--color-white);
   }
   .franchise-opps-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
 }
