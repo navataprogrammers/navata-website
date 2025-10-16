@@ -33,8 +33,7 @@ export async function getStaticProps({ params }) {
 
 const JobDetail = ({ job }) => {
   const router = useRouter();
-  const requirements = parseListField(job.requirements || '');
-
+  const requirements = job.requirements || [];
   const handleSubmitSuccess = () => {
     router.push('/current-openings');
   };
@@ -69,14 +68,28 @@ const JobDetail = ({ job }) => {
 
         {/* Description */}
         <section className="job-detail-content-section">
-          <h2>Description</h2>
+          <h2>Job Description</h2>
           <p>{job.description}</p>
         </section>
+
+        {/* Qualifications */}
+        {job.qualifications && (    
+          <section className="job-detail-content-section">
+            <h2>Qualifications</h2>
+            <p>{job.qualifications}</p>
+          </section>
+        )}
+
+        {/* Experience */}
+        <section className="job-detail-content-section">
+          <h2>Experience</h2>
+          <p>{job.experience}</p>
+        </section>  
 
         {/* Requirements */}
         {requirements && requirements.length > 0 && (
           <section className="job-detail-content-section">
-            <h2>Requirements</h2>
+            <h2>Required Skills</h2>
             <ul className="job-detail-requirements-list">
               {requirements.map((req, i) => (
                 <li key={i}>{req}</li>
