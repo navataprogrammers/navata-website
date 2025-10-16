@@ -19,7 +19,7 @@ const AboutUsPage = ({ achievements, milestones }) => {
             <div className="text-overlay">
               <p className="aboutus-subtitle">
                 Serving India with a vast network of road transport solutions, 
-                we specialize in safe, reliable, efficient logistics and
+                Navata specializes in safe, reliable, efficient logistics and
                 ensure seamless deliveries powered by technology and trust.
                 With intense reachability through tier -1 to tier-3 locations 
                 and all major cities and towns,Navata places a pivotal role in 

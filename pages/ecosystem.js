@@ -16,7 +16,7 @@ const socialResponsibilityData = [
     details: null,
     awards: null
   },
-  {
+   /* {
     title: "Free Dispensary",
     icon: <Stethoscope className="ecosystem-card-icon" />,
     description: "A free dispensary is started in Asia's biggest Autonagar, Vijayawada, to provide first aid to 80,000 workers employed in Autonagar at times of need.",
@@ -24,16 +24,8 @@ const socialResponsibilityData = [
     stats: "Serving 80,000+ workers",
     details: "Located in Autonagar, Vijayawada",
     awards: null
-  },
-  {
-    title: "Educational Scholarships",
-    icon: <GraduationCap className="ecosystem-card-icon" />,
-    description: "Inception of Education Scholarships to blood relatives of agents, employees and hamalies of Navata Road Transport. It is implemented to support and encourage education as cherished by our founder.",
-    image: "/images/Ecosystem/scholarships.jpg",
-    stats: "Rs.1.20 Crore awarded to 7,467 students",
-    details: "From 7th class to Post Graduation level",
-    awards: null,
-  },
+  }, */ 
+  
   {
     title: "PSC Bose Memorial Driving School",
     icon: <Car className="ecosystem-card-icon" />,
@@ -44,6 +36,18 @@ const socialResponsibilityData = [
     awards: ["IRTE Award", "Prince Michael International Road Safety Award (UK) - 2005"]
   }
 ];
+
+const employeewelfare=[
+  {
+    title: "Educational Scholarships",
+    icon: <GraduationCap className="ecosystem-card-icon" />,
+    description: "Inception of Education Scholarships to blood relatives of agents, employees and hamalies of Navata Road Transport. It is implemented to support and encourage education as cherished by our founder.",
+    image: "/images/Ecosystem/scholarships.jpg",
+    stats: "Rs.1.20 Crore awarded to 7,467 students",
+    details: "From 7th class to Post Graduation level",
+    awards: null,
+  },
+]
 
 const sisterConcerns = [
   {
@@ -130,7 +134,55 @@ const Ecosystem = () => (
         </AnimateOnScroll>
       ))}
     </div>
-  
+
+    {/* Employee Welfare Section */}
+    <AnimateOnScroll className="animate-fade-in">
+       <h2 className="ecosystem-section-title">Employee Welfare</h2>
+    </AnimateOnScroll>
+    <div className="ecosystem-card-grid employee-welfare-grid">
+      {employeewelfare.map((item, idx) => (
+        <AnimateOnScroll key={idx} className="animate-fade-up" delay={idx * 100}>
+          <div className="ecosystem-card">
+            <div className="ecosystem-card-content">
+              <div className="ecosystem-card-icon-wrapper">{item.icon}</div>
+              <div className="ecosystem-card-main">
+                <div className="ecosystem-card-title">{item.title}</div>
+                {item.image && (
+                  <div className="ecosystem-card-image-wrapper">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="ecosystem-card-img"
+                    />
+                  </div>
+                )}
+                <div className="ecosystem-card-desc">{item.description}</div>
+                {item.stats && (
+                  <div className="ecosystem-card-feature">
+                    <span className="ecosystem-card-check">✓</span>
+                    <span>{item.stats}</span>
+                  </div>
+                )}
+                {item.details && (
+                  <div className="ecosystem-card-feature">
+                    <span className="ecosystem-card-check">✓</span>
+                    <span>{item.details}</span>
+                  </div>
+                )}
+                {item.awards && (
+                  <div className="ecosystem-card-feature">
+                    <Award className="mr-1" />
+                    <span>{item.awards.join(', ')}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </AnimateOnScroll>
+      ))}
+    </div>
+
     {/* Sister Concerns Section */}
     <AnimateOnScroll className="animate-fade-in">
        <h2 className="ecosystem-section-title">Our Sister Concerns</h2>

@@ -47,6 +47,16 @@
   z-index: 1;
   align-items: stretch;
 }
+.employee-welfare-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.employee-welfare-grid .ecosystem-card {
+  max-width: 900px;  
+  width: 100%;
+}
 
 /* Card Styling & Highlight */
 .ecosystem-card {
