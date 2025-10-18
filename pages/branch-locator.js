@@ -114,8 +114,16 @@ const LocationSearch = () => {
           `https://online.navata.com/SENDMAIL/nrststnaddressjson.jsp?stanid=${name}`
         )
       ]);
-      const branchData = await branchRes.json();
-      const nearbyData = await nearbyRes.json();
+      
+      const parseJSON = async (res) => {                                                                                                                          
+        try {
+          return await res.json();
+        } catch {
+          return [];
+        }
+      };
+      const branchData = await parseJSON(branchRes);
+      const nearbyData = await parseJSON(nearbyRes);
 
       if (branchData.length > 0) setBranchDetails(branchData);
       if (nearbyData.length > 0) setNearestBranches(nearbyData);
