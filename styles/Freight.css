@@ -19,14 +19,6 @@
   overflow: visible;
 }
 
-.freight-container h3 {
-  text-align: center;
-  font-size: 1.75rem;
-  color: var(--color-primary);
-  margin-top: 0;
-  margin-bottom: 4rem;
-}
-
 /* --- Form Layout & Input Styles --- */
 .freight-form-row {
   display: grid;
@@ -136,6 +128,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
+  margin-left: -25px;
 }
 
 .result-item {
