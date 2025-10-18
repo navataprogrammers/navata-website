@@ -52,17 +52,9 @@ const TrackPage = () => {
   }, []);
 
   useEffect(() => {
-    const waybillno = searchParams.get('waybillno');
-    const dateStr = searchParams.get('date'); 
-    if (waybillno && dateStr) {
-      const parsedDate = parseDateFromURL(dateStr);
-      if (parsedDate) {
-        const dataFromUrl = { waybillno, date: parsedDate };
-        setInitialData(dataFromUrl);
-        handleTrackSubmit(dataFromUrl);
-      }
-    }
-  }, [searchParams, handleTrackSubmit]);
+  // Reset form after every page refresh
+  setInitialData({ waybillno: "", date: null });
+  }, []);
 
   return (
     <div className="track-page-container">
