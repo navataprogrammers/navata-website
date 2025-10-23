@@ -30,7 +30,7 @@ const FranchisePage = ({ initialFranchises, initialStates }) => {
       <section className="franchise-hero">
         <div className="franchise-hero-image-container">
             <Image
-                src="/images/franchise.png"
+                src="/images/franchise1.png"
                 alt="Franchise opportunities"
                 width={1920}
                 height={600}

@@ -54,7 +54,7 @@ const CareersPage = ({ jobs: initialJobs, error: initialError }) => {
         <div className="careers-top-banner">
           <div className="careers-banner-image-container">
             <img
-              src="/images/careers.jpg"
+              src="/images/career.jpg"
               alt="Illustration representing career opportunities"
               className="careers-bg-img" loading='eager' 
             />
