@@ -25,8 +25,9 @@ export const MenuItems = {
     },
     {
       title: 'Blog',
-      path: '/blog',
-      cName: 'dropdown-link'
+      path: 'https://navata.com/cms/blog/',
+      cName: 'dropdown-link',
+      external: true
     } 
   ] 
 };
