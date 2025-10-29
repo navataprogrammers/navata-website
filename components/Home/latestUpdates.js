@@ -6,21 +6,21 @@ export default function LatestUpdate() {
       <div className="overlay">
         <div className="contentContainer">
 
-          <div className="contentBox">
+        <div className="contentBox">
             <h1 className="heading">Latest Update</h1>
             <p className="announcement">
-              We are happy to inform the opening of new branch at <span className="highlight">SANKARANKOVIL</span> in the state of Tamilnadu
+              We are happy to inform the opening of new branch at <span className="highlight">VIYAYAWADA - PIPULA ROAD</span> in the state of Andhra Pradesh.
             </p>
             <div className="details">
               <div>Navata Road Transport</div>
-              <div>D.No.81/4, Bharathiyar - 8th Street,</div>
-              <div>Near Siva School, SANKARANKOVIL – 627 756,</div>
-              <div>Tenkasi District, Tamilnadu State.</div>
-              <div>Code : <span className="highlight">SNKL</span></div>
+              <div>D.No.1-183/5, P&T Colony,</div>
+              <div>Inner Ring Road,Pipula Road – 520012,</div>
+              <div>Vijayawada -NTR, Andhra Pradesh.</div>
+              <div>Code : <span className="highlight">VZPR</span></div>
             </div>
         </div>
 
-        <div className="contentBox">
+        { /*<div className="contentBox">
             <h1 className="heading">Latest Update</h1>
             <p className="announcement">
               We are happy to announce our partnership with XYZ Logistics for improved services.
@@ -46,8 +46,8 @@ export default function LatestUpdate() {
             <div>Recognized State-wide</div>
             <div>Code : <span className="highlight">AWDS</span></div>
           </div>
-        </div>
-      </div>
+        </div> */}
+      </div> 
     </div>
     </section>
   );

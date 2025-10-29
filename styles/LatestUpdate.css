@@ -95,3 +95,7 @@
     max-width: 97vw;
   }
 }
+.contentContainer:has(:only-child) {
+  justify-content: center;
+  grid-template-columns: 1fr;
+}
