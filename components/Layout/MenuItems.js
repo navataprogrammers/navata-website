@@ -1,3 +1,5 @@
+import path from "path";
+
 export const MenuItems = {
   company: [
     {
@@ -25,9 +27,8 @@ export const MenuItems = {
     },
     {
       title: 'Blog',
-      path: 'https://navata.com/cms/blog/',
       cName: 'dropdown-link',
-      external: true
+      path: '/blog'
     } 
   ] 
 };
