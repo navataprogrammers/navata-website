@@ -10,17 +10,31 @@ const nextConfig = {
   images: {
     domains: ['img.icons8.com', 'images.unsplash.com', 'jsonplaceholder.typicode.com'], 
   },
-
-  // --- REVERSE PROXY / REWRITES CONFIGURATION ---
   async rewrites() {
     return [
-      // DUMMY TEST REWRITE: /blog/* will proxy 
+      // 1. Rewrite for content paths (posts, pages, categories, etc.)
+      // The :path* parameter ensures everything after /blog/ is passed to the destination URL.
       {
         source: '/blog/:path*',
-        // destination
-        destination: 'https://navata.com/cms/blog'
+        // Assumes your WordPress content lives at https://navata.com/cms/blog/content
+        destination: 'https://blog.navata.com/blog/:path*', 
+      },
+      // 2. Rewrite for the root blog page itself (/blog)
+      {
+        source: '/blog',
+        destination: 'https://blog.navata.com/blog/',
+      },
+      // 3. CRITICAL: Rewrite for WordPress assets (JS, CSS, Images)                                     
+      // WordPress typically serves assets from /wp-content or /wp-includes
+      {
+        source: '/wp-content/:path*',
+        destination: 'https://blog.navata.com/blog/wp-content/:path*',
+      },
+      {
+        source: '/wp-includes/:path*',
+        destination: 'https://blog.navata.com/blog/wp-includes/:path*',
       },
     ];
   },
 }
-module.exports = nextConfig;
+module.exports = nextConfig;                                                                                                                                                                                                  
