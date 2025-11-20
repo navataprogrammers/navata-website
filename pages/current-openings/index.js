@@ -7,7 +7,7 @@ import JobsByDepartment from '../../components/careers/JobsByDepartment';
 import AnimateOnScroll from '../../components/AnimateonScroll'; 
 import { fetchJobsFromAPI } from '../../lib/JobUtils';
 import '../../styles/Careers.css';
-
+import LocateTrackButtons from '../../components/LocateTrackbuttons';
 
 export async function getStaticProps() {
   try {
@@ -52,6 +52,7 @@ const CareersPage = ({ jobs: initialJobs, error: initialError }) => {
       <div className="careers-main-page">
         {/* Top Banner Section  */}
         <div className="careers-top-banner">
+          <LocateTrackButtons />
           <div className="careers-banner-image-container">
             <img
               src="/images/career.jpg"

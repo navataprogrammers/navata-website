@@ -6,6 +6,7 @@ import FaqItem from '../components/support/FaqItem';
 import AnimateOnScroll from '../components/AnimateonScroll';
 import SupportTicketForm from '../components/support/SupportTicketForm';
 import '../styles/Support.css';
+import LocateTrackButtons from '../components/LocateTrackbuttons';
 
 const SupportPage = ({ faqData, categories,termsAndConditions }) => {
   const [activeTab, setActiveTab] = useState('faq');
@@ -37,6 +38,7 @@ const SupportPage = ({ faqData, categories,termsAndConditions }) => {
     <div className="support-root">
       {/* Header */}
       <div className="support-banner">
+        <LocateTrackButtons />
         <div className="support-image-container">
             <Image
               src="/images/support1.jpg"

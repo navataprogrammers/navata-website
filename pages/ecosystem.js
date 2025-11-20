@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Building2, Heart, GraduationCap, Stethoscope, Car, Award, Users } from 'lucide-react';
 import '../styles/EcoSystem.css';
 import AnimateOnScroll from '../components/AnimateonScroll';
+import LocateTrackButtons from '../components/LocateTrackbuttons';
 
 const socialResponsibilityData = [
   {

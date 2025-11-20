@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Truck, MapPin, ArrowRight, CheckCircle, Star, Warehouse } from 'lucide-react';
 import AnimateOnScroll from '../components/AnimateonScroll';
 import '../styles/Services.css';
+import LocateTrackButtons from '../components/LocateTrackbuttons';
 
 const iconMap = {
   truck: <Truck className="w-8 h-8" />,
@@ -13,30 +14,30 @@ const iconMap = {
 const ServicesPage = ({ services, valueAdds, process }) => {
   return (
     <div className="services-page">
-    <div className="services-banner">
-      <div className='services-image-container'>
-      <Image
-        src="/images/IMG_5313 edited.jpg"
-        alt="Illustration representing logistics and delivery services"
-        className="hero-bg-img"
-        fill
-        priority
-      />
+      {/* Banner Section */}
+      <div className="services-banner">
+        <div className="services-image-container">
+          <Image
+            src="/images/IMG_5313 edited.jpg"
+            alt="Illustration representing logistics and delivery services"
+            className="hero-bg-img"
+            fill
+            priority
+          />
+        </div>
+        <LocateTrackButtons />
+        <div className="services-banner-text">
+          <AnimateOnScroll className="scroll-animate" delay={200}>
+            <h1 className="services-main-title">OUR SERVICES</h1>
+            <p className="services-subtitle">
+              Comprehensive logistics solutions designed to accelerate your business
+              growth and expand your possibilites.
+            </p>
+          </AnimateOnScroll>
+        </div>
+        
       </div>
-      {/* Left overlay */}
 
-      {/* Text content */}
-      <div className="services-banner-text">
-        <AnimateOnScroll className="scroll-animate" delay={200}>
-          <h1 className="services-main-title">OUR SERVICES</h1>
-          <p className="services-subtitle">
-           Comprehensive logistics solutions designed to accelerate your business
-           growth and expand your possibilites.
-          </p>
-        </AnimateOnScroll>
-      </div>
-    </div>
-  
       {/* Core Services Section */}
       <div className="services-main">
         <div className="services-container">
@@ -46,13 +47,13 @@ const ServicesPage = ({ services, valueAdds, process }) => {
               Comprehensive logistics solutions tailored to meet your unique business requirements
             </p>
           </div>
-
           <div className="services-grid">
             {services.map((service, index) => (
               <AnimateOnScroll
                 key={service.id}
                 className="services-card"
-                delay={index * 100} >
+                delay={index * 100}
+              >
                 <div className="services-card-content">
                   <div className="services-card-icon">{iconMap[service.icon]}</div>
                   <div className="services-card-text">
@@ -83,15 +84,19 @@ const ServicesPage = ({ services, valueAdds, process }) => {
         <AnimateOnScroll>
           <div className="steps-flow">
             {process.map((step, index) => (
-              <div key={step.id} className="step-flow-item animate-step" style={{ animationDelay: `${index * 0.2}s` }}>
+              <div
+                key={step.id}
+                className="step-flow-item animate-step"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
                 <div className="step-circle">
                   <Image
                     src={step.img}
                     alt={step.title}
                     className="step-icon"
                     objectFit="contain"
-                     width={294}   
-                     height={294}  
+                    width={294}
+                    height={294}
                   />
                 </div>
                 <h3 className="step-title">{step.title}</h3>
@@ -111,13 +116,13 @@ const ServicesPage = ({ services, valueAdds, process }) => {
               Additional services to enhance your logistics experience and operational efficiency
             </p>
           </div>
-
           <div className="services-value-grid">
             {valueAdds.map((item, index) => (
               <AnimateOnScroll
                 key={index}
                 className="services-value-card"
-                delay={index * 120}  >
+                delay={index * 120}
+              >
                 <div className="services-value-card-content">
                   <div className="services-value-card-icon">
                     <Star className="services-value-star" />

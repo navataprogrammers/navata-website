@@ -5,6 +5,7 @@ import NewFranchiseForm from "../components/franchise/NewFranchiseForm";
 import AnimateOnScroll from "../components/AnimateonScroll";
 import FranchiseInquiryModal from "../components/franchise/FranchiseInquiryModal";
 import "../styles/Franchise.css";
+import LocateTrackButtons from "../components/LocateTrackbuttons";
 
 const FranchisePage = ({ initialFranchises, initialStates }) => {
   const [selectedState, setSelectedState] = useState("All");
@@ -28,6 +29,7 @@ const FranchisePage = ({ initialFranchises, initialStates }) => {
     <div className="franchise-global">
       {/* Hero Section */}
       <section className="franchise-hero">
+        <LocateTrackButtons />
         <div className="franchise-hero-image-container">
             <Image
                 src="/images/franchise1.png"

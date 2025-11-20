@@ -3,12 +3,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import AnimateOnScroll from "../components/AnimateonScroll";
 import "../styles/Media.css";
+import LocateTrackButtons from "../components/LocateTrackbuttons";
 
 const MediaPage = ({ mediaData }) => {
   return (
     <div className="media-container">
       {/* Hero Section */}
       <div className="media-hero">
+        <LocateTrackButtons />  
         <div className="media-hero-image-container">
           <Image
             src="/images/press-release.jpg"
