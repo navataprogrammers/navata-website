@@ -13,7 +13,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const [openDropdowns, setOpenDropdowns] = useState({
-    company: false,
+    company: false,                    
     media: false,
   });
 

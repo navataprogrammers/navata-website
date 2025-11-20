@@ -1,0 +1,56 @@
+.floating-buttons-container {
+  position: absolute;
+  right: 0rem;              
+  bottom: 18rem;             
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 5;              
+  align-items: flex-end;
+}
+
+/* Common button style */
+.floating-btn {
+  background: linear-gradient(90deg, #f7c948, #b8860b);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.8rem 1.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);    
+}
+
+/* Locate button */
+.locate-btn {
+  background: linear-gradient(90deg, #b8860b, #f7c948);
+}
+
+/* Track button */
+.track-btn {
+  background: linear-gradient(90deg, #f7c948, #b8860b);
+}
+
+/* Hover effects */
+.floating-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floating-buttons-container {
+    right: 50%;
+    bottom: 1.5rem;
+    transform: translateX(50%);
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .floating-btn {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.95rem;
+  }
+}

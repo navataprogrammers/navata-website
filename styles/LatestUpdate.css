@@ -1,101 +1,99 @@
 .updateSection {
   position: relative;
   width: 100%;
-  height: 500px;
-  background: url('/images/navata-road-transport-6.jpg') top center no-repeat;
+  min-height: 650px;
+  background: url('/images/navata-road-transport-6.jpg') center center no-repeat;
   background-size: cover;
-  overflow: hidden;
+  background-attachment: fixed;
 }
 
+/* Dark transparent overlay */
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.55);
+  width: 100%; 
+  min-height: 650px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 2;
+  align-items: center;
+  padding: 80px 0;
 }
 
-/* Grid container for all update boxes */
 .contentContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Default for 3 items */
   gap: 32px;
+  max-width: 1400px;
   width: 100%;
-  max-width: 1450px;
   margin: 0 auto;
-  padding: 0 18px;
+  padding: 0 20px;
 }
 
-/* Each update content box */
 .contentBox {
-  color: #fff;
-  border-radius: 10px;
-  padding: 32px 24px;
+  padding: 32px 28px;
   text-align: center;
-  min-width: 260px;
-  max-width: 420px;
-  margin: 0 auto;
+  color: #fff;
+  backdrop-filter: blur(4px);
 }
 
+/* Headings + text */
 .heading {
-  font-size: 2.2rem;
-  font-weight: bold;
-  margin-bottom: 16px;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .announcement {
   font-size: 1.1rem;
-  margin-bottom: 18px;
-}
-
-.highlight {
-  color: #ffe15c;
-  font-weight: bold;
+  margin-bottom: 16px;
+  line-height: 1.5;
 }
 
 .details {
   font-size: 1rem;
-  margin-bottom: 16px;
-  text-align: center;
   line-height: 1.6;
 }
 
-.awards {
-  display: flex;
-  gap: 18px;
-  justify-content: center;
-  font-size: 1rem;
-  margin-top: 10px;
+.highlight {
+  color: #ffe15c;
+  font-weight: 700;
 }
 
-/* Responsive design for tablets */
+.contentContainer.has-one-child {
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+
+.contentContainer.has-two-children {
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center !important;
+}
+
+.contentContainer.has-three-children {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* --- MEDIA QUERIES --- */
 @media (max-width: 1024px) {
-  .updateGrid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 600px) {
-  .updateSection {
-    height: 1150px;
-  }
   .contentContainer {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 28px;
+  }
+  .contentContainer.has-one-child,
+  .contentContainer.has-two-children {
+     place-items: normal; /* Reset desktop centering */
   }
   .contentBox {
-    padding: 16px 10px;
-    min-width: 88vw;
-    max-width: 97vw;
+    max-width: 480px;
+    justify-self: center;
   }
 }
-.contentContainer:has(:only-child) {
-  justify-content: center;
-  grid-template-columns: 1fr;
+
+@media (max-width: 600px) {
+  .contentContainer {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .contentBox {
+    max-width: 95%;
+  }
 }

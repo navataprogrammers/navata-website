@@ -99,7 +99,7 @@ const Footer = () => {
               <strong>D.NO: 18-667 Bose Building, Kanuru, Vijayawada </strong><br />
               Andhra Pradesh 520007
             </ContactCard>                        
-            {/* Contact Us Card - not a link, so not using the component */}
+            {/* Contact Us Card */}
             <div className="contact-card">
             <h3 className="contact-title">Contact Us</h3>
             <a href="tel:+919248094455" className="contact-info-item">

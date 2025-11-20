@@ -1,3 +1,5 @@
+/* AboutUs.css - MODIFIED VERSION */
+
 /* --- About Us Page Styles --- */
 .about-us-container {
   background-color: var(--color-bg);
@@ -20,87 +22,107 @@
 .achievements-subtitle {
   color: var(--color-text-muted);
 }
-/* --- Hero Section --- */
+
+/* --- Hero Section (Updated to match Services Banner) --- */
 .aboutus-section {
-  flex-direction: row-reverse; 
+  width: 100%;
+  max-width: none; /* Full width */
+  height: 65vh; /* Same height as services-banner */
+  position: relative;
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  flex-wrap: wrap; 
-  gap: 10px;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 50px 16px;
+  align-items: center;
+  justify-content: center; /* Center content */
+  overflow: hidden;
+  padding: 0;
+  background: var(--color-bg); 
 }
 
+/* --- Image and Overlay (Reusing services-banner style for consistency) --- */
 .hero-image {
-  flex: 1; 
-  min-width: 500px; 
-  height: 550px; 
-  background: url('/images/India_map.jpeg') no-repeat right /contain; 
-  border-radius: 12px; 
-  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; 
+  background: url('/images/India_map.png') no-repeat center /cover; /* Image covers the area */
+  opacity: 1; /* Image is fully visible behind overlay */
+  border-radius: 0; /* Remove border-radius for full width banner */
+  min-width: unset;
 }
-@keyframes pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    filter: brightness(0.95);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.03); /* tiny zoom */
-    filter: brightness(1.05);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    filter: brightness(0.95);
-  }
-}
-.text-overlay {
-  position: relative;
-  background: rgba(255, 255, 255,0.2); /* semi-transparent black */
-  padding: 0.2rem;
-  border-radius: 12px;
-  z-index: 3;
+
+.hero-image::after { /* Image overlay to darken and blend */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 0.6), /* Darker overlay */
+    rgba(0, 0, 0, 0.8)
+  );
+  z-index: 1;
 }
 
 .aboutus-content {
-  flex: 1; 
-  min-width: 300px; 
-  text-align: left; 
+  position: relative;
+  z-index: 3; /* Above the overlay */
+  text-align: center; /* Center the text */
+  padding: 2rem 4rem; /* Same padding as services-banner-text */
+  max-width: 800px;
+  margin: 0 auto;
+  min-width: unset;
+  color: var(--color-white); /* Text color contrast */
+}
+
+/* Removing the pulse animation as it's not present in the services banner style */
+@keyframes pulse {
+  /* Removed for services banner consistency */
+}
+
+.text-overlay {
+  background: transparent; /* Remove background, relying on the image overlay */
+  padding: 0;
+  border-radius: 0;
+  z-index: 3;
 }
 
 .aboutus-title {
   padding-top: 0;
   font-size: var(--font-main);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-white); /* Changed to white for dark background */
   letter-spacing: -0.01em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 
+               0 4px 12px rgba(0, 0, 0, 0.4); /* Added text shadow for visibility */
   margin-bottom: 24px;
-  text-align: left; 
+  text-align: center; /* Center the title */
   position: relative;
-  left: 0;
 }
+
 .aboutus-title::after {
   content: '';
   position: absolute;
   bottom: -12px;
-  left: 0;
+  left: 50%; /* Center the underline */
+  transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #f7c948, #b8860b);
+  background: linear-gradient(90deg, #f7c948, #b8860b); /* Gold gradient line */
   border-radius: 2px;
 }
+
 .aboutus-subtitle {
-  text-align: left; 
+  text-align: center; /* Center the subtitle */
   font-size: var(--font-subheading);
-  line-height: 1.6;
-  color: var(--color-primary);
+  line-height: 1.8; /* Increased line-height for better readability */
+  color: var(--color-white); /* Changed to white for dark background */
   font-weight: 400;
-  animation: fadeInUp 0.8s ease-out 0.3s both;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5), 
+               0 2px 10px rgba(0, 0, 0, 0.4); /* Added text shadow */
+  animation: none; /* Removed specific animation for consistency, use the general page animation if needed */
 }
 
-/* --- Section Base Styles --- */
+/* --- Section Base Styles (Rest of file unchanged but included for completeness) --- */
 .section {
   padding: 2rem 1.5rem;
 }
@@ -510,119 +532,64 @@
   line-height: 1.6;
 }
 
+/* --- Responsive Design for About Us Section --- */
+
+/* Mobile Responsive */
 @media (max-width: 767px) {
   .aboutus-section {
-    position: relative; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
+    height: 50vh; /* Shorter height on mobile */
     padding: 0; 
-    color: var(--color-white);
-  }
-
-  .aboutus-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-    z-index: 1;
-    border-radius: 0;
   }
 
   .hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
     min-width: unset;
     border-radius: 0; 
   }
+  .hero-image::after { /* Ensure overlay is still active on mobile */
+    z-index: 1;
+  }
 
   .aboutus-content {
-    position: relative;
-    z-index: 2;
     min-width: unset; 
     padding: 1rem; 
+    width: 100%;
   }
 
-  .aboutus-title,
-  .aboutus-subtitle {
+  .aboutus-title {font-size: 2rem; color: var(--color-white); text-align: center;}
+  
+  .aboutus-subtitle { 
+    font-size: 1rem; 
+    line-height: 1.4;
     color: var(--color-white);
     text-align: center;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); 
   }
 
-  .aboutus-section .text-overlay {
-    background: transparent;
-    padding: 0;
+  .aboutus-title::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   body {
     font-size: 0.85rem;
     line-height: 1.5;
   }
-
-  /* General text alignment */
-  .section,
-  .founder-section,
-  .vision-mission-section,
-  .team-values-section,
-  .achievements-section {
+  .section, .founder-section, .vision-mission-section, .team-values-section, .achievements-section {
     text-align: center;
     padding: 1.5rem 0.75rem;
   }
-
-  .section-title,
-  .section-subtitle,
-  .vision-mission-card-title,
-  .value-card-title,
-  .team-values-title {
+  .section-title, .section-subtitle, .vision-mission-card-title, .value-card-title, .team-values-title {
     text-align: center;
   }
-
-  /* Headings & Titles */
-  .section-title,
-  .founder-name,
-  .milestone-year,
-  .vision-mission-card-title,
-  .achievement-title,
-  .value-card-title,
-  .team-values-title {
+  .section-title, .founder-name, .milestone-year, .vision-mission-card-title, .achievement-title, .value-card-title, .team-values-title {
     font-size: 1.5rem;
   }
-  .aboutus-title {font-size: 2rem;}
-  /* Subheadings & Text */
-  .aboutus-subtitle,
-  .section-subtitle,
-  .founder-text,
-  .milestone-event,
-  .vision-mission-card-text,
-  .value-card-description,
-  .achievement-description,
-  .team-values-subtitle {
+  .section-subtitle, .founder-text, .milestone-event, .vision-mission-card-text, .value-card-description, .achievement-description, .team-values-subtitle {
     font-size: 0.8rem;
     line-height: 1.4;
   }
-  /*.aboutus-subtitle { font-size: 1rem;} */
-
-  .aboutus-title::after {
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-white);
-  }
-  /* Smaller text elements */
-  .journey-dot,
-  .founder-image-tag {
+  .journey-dot, .founder-image-tag {
     font-size: 0.75rem;
   }
-
-  /* Founder image layout */
   .founder-image-wrapper {
     margin-top: 0.5rem;
     margin-bottom: 1rem;
@@ -651,8 +618,6 @@
   .founder-grid{
     gap: 0.75em;
   }
-
-  /* Milestones */
   .journey-carousel {
     height: 250px;
     padding: 0 0.5rem;
@@ -679,8 +644,6 @@
     font-size: 0.75rem;
     line-height: 1.4;
   }
-
-  /* Team Values - SINGLE LINE ON DESKTOP, WRAPS ON MOBILE & FONT FIXES */
   .team-values-row {
     display: flex;
     flex-wrap: wrap;
@@ -702,20 +665,19 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
-  .value-card-title,
-  .team-value-card .value-card-title {
+  .value-card-title, .team-value-card .value-card-title {
     font-size: 1rem;
     text-align: center;
     margin-bottom: 0.5rem;
   }
-  .value-card-description,
-  .team-value-card .value-card-description {
+  .value-card-description, .team-value-card .value-card-description {
     font-size: 0.75rem;
     text-align: center;
     line-height: 1.4;
   }
 }
 
+/* Tablet/Desktop Responsive */
 @media (min-width: 768px) {
   .founder-grid {
     grid-template-columns: repeat(2, 1fr);

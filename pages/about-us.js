@@ -6,13 +6,14 @@ import VisionMissionSection from '../components/Aboutus/VisionMissionSection';
 import TeamValuesSection from '../components/Aboutus/TeamValuesSection';
 import MilestonesSection from '../components/Aboutus/MilestonesSection';
 import AchievementsSection from '../components/Aboutus/AchievementsSection';
+import LocateTrackButtons from '../components/LocateTrackbuttons';
 
 const AboutUsPage = ({ achievements, milestones }) => {
   return (
     <div className="about-us-container">
       <section className="aboutus-section">
-         <div className="hero-image"></div>
-        <div className="franchise-hero-circles" /> 
+        <LocateTrackButtons />
+        <div className="hero-image"></div>
         <div className="aboutus-content">
           <AnimateOnScroll className="scroll-animate" delay={200}>
             <h1 className="aboutus-title">About Navata Road Transport</h1>

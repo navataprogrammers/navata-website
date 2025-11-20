@@ -1,69 +1,78 @@
 .careers-main-page {
   background: var(--color-bg);
 }
-.careers-top-banner{
-  flex-direction: row-reverse; 
+.careers-top-banner {
   width: 100%;
-  height: 60vh; 
+  height: 65vh;
   position: relative;
-  overflow: hidden;
-  background: var(--color-bg);
-  color: var(--color-text);
   display: flex;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-bg);
 }
+
 
 .careers-banner-image-container {
-  flex: 0 0 50%; 
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
+  z-index: 0;
 }
-
-.careers-bg-img{
-  width: 100%;                 
-  height: 100%;                
-  opacity: 0.9;             
-  pointer-events: none;
+.careers-bg-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  filter: brightness(1.1) contrast(1.05);
+}
+.careers-banner-image-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.8)
+  );
+  z-index: 1;
 }
 
 .careers-banner-content {
-  flex: 1; 
   position: relative;
-  z-index: 10;
-  text-align: left; 
-  padding: 2rem 4rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  z-index: 3;
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--color-white);
 }
+
 
 .careers-banner-title {
   font-size: var(--font-main);
   font-weight: 700;
-  margin-bottom: 24px; 
-  color: var(--color-primary) !important;
-  position: relative; 
+  color: var(--color-white) !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  margin-bottom: 1rem;
+  position: relative;
 }
-
 .careers-banner-title::after {
   content: '';
   position: absolute;
-  bottom: -12px; 
-  left: 0;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 80px;
   height: 4px;
   background: linear-gradient(90deg, #f7c948, #b8860b);
   border-radius: 2px;
 }
 
+/* Subtitle */
 .careers-banner-subtitle {
   font-size: var(--font-subheading);
-  margin-bottom: 0;
-  color: var(--color-primary) !important;
-  font-weight: 400;
+  color: var(--color-white) !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
+
 
 /* Search Bar */
 .careers-search-bar {

@@ -10,6 +10,7 @@
   overflow-x: hidden;
 }
 
+/* === Services Banner (Hero) === */
 .services-banner {
   width: 100%;
   height: 65vh;
@@ -22,40 +23,61 @@
 }
 
 .services-image-container {
-  flex: 0 0 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  position: relative;
+  z-index: 0; 
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.services-image-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.8)
+  );
+  z-index: 1;
 }
 
 .hero-bg-img {
   width: 100%;
   height: 100%;
-  object-fit: contain; 
-  object-position: right; 
+  object-fit: cover; 
+  object-position: center;
+  position: relative;
+  z-index: 0;
 }
-
 
 .services-banner-text {
   flex: 1;
   padding: 2rem 4rem; 
-  text-align: left;
-  z-index: 2;
+  z-index: 3;
+  text-align: center;
+  position: relative;
 }
 
 .services-main-title {
   font-size: var(--font-main);
   font-weight: 700;
-  color: var(--color-primary); 
+  color: var(--color-white); 
   margin-bottom: 1rem;
   line-height: 1.2;
   position: relative;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 
+               0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .services-main-title::after {
   content: '';
   position: absolute;
   bottom: -8px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 80px;
   height: 4px;
   background: linear-gradient(90deg, #f7c948, #b8860b);
@@ -64,12 +86,15 @@
 
 .services-subtitle {
   font-size: var(--font-subheading);
-  color: var(--color-primary); 
-  max-width: none; 
-  line-height: 1.6;
-  margin-top: 1rem; 
+  color: var(--color-white); 
+  line-height: 1.8;
+  margin-top: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5), 
+               0 2px 10px rgba(0, 0, 0, 0.4);
 }
-
 
 /* === Main Services Section === */
 .services-main {
@@ -460,38 +485,6 @@
   display: none;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .steps-flow {
-    flex-direction: column;
-    gap: 3.5rem;
-  }
-  .step-flow-item::after {
-    content: "↓";
-    right: 50%;
-    top: auto;
-    bottom: -2.5rem;
-    transform: translateX(50%);
-  }
-}
-
-/* === Animations === */
-.animate-step {
-  animation: fadeUpBounce 0.9s ease forwards;
-}
-
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeUpBounce {
-  0% { opacity: 0; transform: translateY(40px) scale(0.8); }
-  60% { opacity: 1; transform: translateY(-10px) scale(1.05); }
-  80% { transform: translateY(5px) scale(0.97); }
-  100% { transform: translateY(0) scale(1); }
-}
-
 /* === Value Added Services === */
 .services-value-added {
   padding: 50px 0;
@@ -613,7 +606,7 @@
   opacity: 0.9;
 }
 
-/* === Scroll Animations === */
+/* === Animations and Responsive Design === */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -625,20 +618,25 @@
   }
 }
 
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpBounce {
+  0% { opacity: 0; transform: translateY(40px) scale(0.8); }
+  60% { opacity: 1; transform: translateY(-10px) scale(1.05); }
+  80% { transform: translateY(5px) scale(0.97); }
+  100% { transform: translateY(0) scale(1); }
+}
+
 .animate-step {
   opacity: 0;
   transform: translateY(40px);
   animation: fadeUp 0.8s forwards;
 }
 
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===  Responsive Design === */
+/* Responsive: 768px */
 @media (max-width: 768px) {
   .services-banner {
     position: relative;
@@ -648,17 +646,7 @@
     height: 50vh;
     padding: 0;
     color: var(--color-white);
-  }
-
-  .services-banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    flex-direction: column; /* Changed for better mobile stacking */
   }
 
   .services-image-container {
@@ -668,11 +656,6 @@
     width: 100%;
     height: 100%;
     z-index: 0; 
-  }
-
-  .hero-bg-img {
-    object-fit: cover;
-    object-position: center;
   }
 
   .services-banner-text {
@@ -694,7 +677,6 @@
   .services-main-title::after {
     left: 50%;
     transform: translateX(-50%);
-    background: var(--color-white);
   }
   
   .steps-flow {
@@ -744,7 +726,7 @@
     gap: 20px;
   }
 
-  .services-section-header {
+  .services-header {
     margin-bottom: 30px;
   }
 
@@ -756,8 +738,15 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  .services-value-grid {
+    grid-template-columns: 1fr;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
+/* Responsive: Min-width 768px */
 @media (min-width: 768px) {
   .services-value-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -767,6 +756,7 @@
   }
 }
 
+/* Responsive: Min-width 1024px */
 @media (min-width: 1024px) {
   .services-value-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -781,6 +771,7 @@
   }
 }
 
+/* Responsive: Min-width 1200px */
 @media (min-width: 1200px) {
   .services-main,
   .services-value-added,
