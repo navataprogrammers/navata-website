@@ -23,7 +23,7 @@
 }
 
 .support-banner::after {
-  content: '';
+  content: ''; 
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -40,6 +40,8 @@
   text-align: center;
   padding: 2rem 1rem;
   color: var(--color-white);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Title + underline */
@@ -418,22 +420,12 @@ button[aria-expanded="true"] + .support-faq-answer-wrapper .support-faq-answer {
   }
 
   .support-banner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1;
+    content: none;
   }
 
   .support-header-content {
     padding: 1rem;
-  }
-
-  .support-title::after {
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-white);
-  }
+  }        
 
   .support-content { padding: 1.5rem; }
   .support-main-container { padding: 0; }

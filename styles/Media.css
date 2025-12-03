@@ -197,11 +197,6 @@
     color: var(--color-white);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   }
-  .media-title::after{
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-white);
-  }
     
   .media-cards {
     padding: 2rem 1rem;

@@ -392,11 +392,7 @@
     padding: 1rem;
     text-align: center;
   }
-  .careers-banner-title::after {
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-white);
-  }
+  
   .careers-banner-title,
   .careers-banner-subtitle {
     text-align: center;
