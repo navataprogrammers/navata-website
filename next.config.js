@@ -9,39 +9,38 @@ const nextConfig = {
   },
 
   reactStrictMode: true,
+
   images: {
     domains: [
       'img.icons8.com',
       'images.unsplash.com',
       'jsonplaceholder.typicode.com',
-      'navata.com', // allow WP images
+      'navata.com',
     ],
   },
+
   async rewrites() {
     return [
-      // 1. Blog dynamic routes
+      // Blog pages stay on AWS URL (reverse-proxy will fetch WP)
       {
         source: '/blog/:path*',
-        destination: 'https://navata.com/cms/blog/:path*',
+        destination: '/cms/blog/:path*',
       },
 
-      // 2. Blog root
       {
         source: '/blog',
-        destination: 'https://navata.com/cms/blog/',
+        destination: '/cms/blog',
       },
 
-      // 3. WordPress /wp-content/ assets
+      // WordPress assets proxied internally
       {
         source: '/wp-content/:path*',
-        destination: 'https://navata.com/cms/wp-content/:path*',
+        destination: '/cms/wp-content/:path*',
       },
-
-      // 4. WordPress /wp-includes/ assets
       {
         source: '/wp-includes/:path*',
-        destination: 'https://navata.com/cms/wp-includes/:path*',
-      },
+        destination: '/cms/wp-includes/:path*',
+      }
     ];
   },
 };
