@@ -5,36 +5,45 @@ const nextConfig = {
     EMAIL_PORT: process.env.EMAIL_PORT,
     ADMIN_USER: process.env.ADMIN_USER,
     ADMIN_PASS: process.env.ADMIN_PASS,
-    EMAIL_USER: process.env.EMAIL_USER,  },
+    EMAIL_USER: process.env.EMAIL_USER,
+  },
+
   reactStrictMode: true,
   images: {
-    domains: ['img.icons8.com', 'images.unsplash.com', 'jsonplaceholder.typicode.com'], 
+    domains: [
+      'img.icons8.com',
+      'images.unsplash.com',
+      'jsonplaceholder.typicode.com',
+      'navata.com', // allow WP images
+    ],
   },
   async rewrites() {
     return [
-      // 1. Rewrite for content paths (posts, pages, categories, etc.)
-      // The :path* parameter ensures everything after /blog/ is passed to the destination URL.
+      // 1. Blog dynamic routes
       {
         source: '/blog/:path*',
-        // Assumes your WordPress content lives at https://navata.com/cms/blog/content
-        destination: 'https://blog.navata.com/blog/:path*', 
+        destination: 'https://navata.com/cms/blog/:path*',
       },
-      // 2. Rewrite for the root blog page itself (/blog)
+
+      // 2. Blog root
       {
         source: '/blog',
-        destination: 'https://blog.navata.com/blog/',
+        destination: 'https://navata.com/cms/blog/',
       },
-      // 3. CRITICAL: Rewrite for WordPress assets (JS, CSS, Images)                                     
-      // WordPress typically serves assets from /wp-content or /wp-includes
+
+      // 3. WordPress /wp-content/ assets
       {
         source: '/wp-content/:path*',
-        destination: 'https://blog.navata.com/blog/wp-content/:path*',
+        destination: 'https://navata.com/cms/wp-content/:path*',
       },
+
+      // 4. WordPress /wp-includes/ assets
       {
         source: '/wp-includes/:path*',
-        destination: 'https://blog.navata.com/blog/wp-includes/:path*',
+        destination: 'https://navata.com/cms/wp-includes/:path*',
       },
     ];
   },
-}
-module.exports = nextConfig;                                                                                                                                                                                                  
+};
+
+module.exports = nextConfig;
