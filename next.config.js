@@ -19,30 +19,7 @@ const nextConfig = {
     ],
   },
 
-  async rewrites() {
-    return [
-      // Blog pages stay on AWS URL (reverse-proxy will fetch WP)
-      {
-        source: '/blog/:path*',
-        destination: '/cms/blog/:path*',
-      },
-
-      {
-        source: '/blog',
-        destination: '/cms/blog',
-      },
-
-      // WordPress assets proxied internally
-      {
-        source: '/wp-content/:path*',
-        destination: '/cms/wp-content/:path*',
-      },
-      {
-        source: '/wp-includes/:path*',
-        destination: '/cms/wp-includes/:path*',
-      }
-    ];
-  },
+  
 };
 
 module.exports = nextConfig;
