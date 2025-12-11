@@ -12,7 +12,19 @@ const nextConfig = {
   },
   async rewrites() {
   return [
-    // 1. Rewrite for all blog paths
+    // next.config.js (add these two rules)
+
+{
+  // 4. Test: Proxy the root GitHub API endpoint
+  source: '/blog',
+  destination: 'https://api.github.com/',
+},
+{
+  // 5. Test: Proxy for any path/assets under the test route
+  source: '/blog/:path*',
+  destination: 'https://api.github.com/:path*',
+},
+    /* // 1. Rewrite for all blog paths
     {
       source: '/blog/:path*',
       destination: 'https://navata.com/cms/blog/:path*',
@@ -32,7 +44,7 @@ const nextConfig = {
     {
       source: '/wp-includes/:path*',
       destination: 'https://navata.com/cms/wp-includes/:path*',
-    },
+    }, */
   ];
 }
 };
