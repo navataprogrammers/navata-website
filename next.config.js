@@ -25,13 +25,13 @@ const nextConfig = {
      // 1. Rewrite for all blog paths
     {
       source: '/blog/:path*',
-      destination: 'https://blog.navata.com/blog/:path*',
+      destination: 'https://blog.navata.com/:path*',
     },
 
     // 2. Rewrite for root /blog page
     {   
       source: '/blog',
-      destination: 'https://blog.navata.com/blog/',
+      destination: 'https://blog.navata.com',
     },
 
     // 3. WordPress assets
