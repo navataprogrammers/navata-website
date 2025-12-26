@@ -9,26 +9,6 @@ const nextConfig = {
       'jsonplaceholder.typicode.com'
     ],
   },
-  async rewrites() {
-  return [
-    {
-      source: '/blog/wp-content/:path*',
-      destination: 'https://blog.navata.com/wp-content/:path*',
-    },
-    {
-      source: '/blog/wp-includes/:path*',
-      destination: 'https://blog.navata.com/wp-includes/:path*',
-    },
-    {
-      source: '/blog/:path*',
-      destination: 'https://blog.navata.com/:path*',
-    },
-    {
-      source: '/blog',
-      destination: 'https://blog.navata.com',
-    },
-  ];
-  }
-}
+};
 
 module.exports = nextConfig;
