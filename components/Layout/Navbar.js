@@ -31,11 +31,17 @@ const Navbar = () => {
     setOpenDropdowns({ company: false, media: false });
   }, []);
 
+  
   const handleNavigation = (path) => {
-    closeAllDropdowns();
-    setIsMenuOpen(false);
-    router.push(path);
-  };
+  closeAllDropdowns();
+  setIsMenuOpen(false);
+
+  if (path === '/blog') {
+    window.location.href = path; // Forces a browser reload to let CloudFront take over
+  } else {
+    router.push(path); // Standard Next.js navigation for everything else
+  }
+};
 
   useEffect(() => {
     const handleResize = () => {
