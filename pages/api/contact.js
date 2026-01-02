@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   const { name, email, mobile, message } = req.body;
 
-  // Log environment variables for debugging
+  /*  Log environment variables for debugging
   console.log('Environment check:', {
     hasHost: !!process.env.EMAIL_HOST,
     hasPort: !!process.env.EMAIL_PORT,
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     hasEmailUser: !!process.env.EMAIL_USER,
     port: process.env.EMAIL_PORT,
     host: process.env.EMAIL_HOST,
-  });
+  });  */
 
   // Validate environment variables
   if (!process.env.EMAIL_HOST || !process.env.ADMIN_USER || !process.env.ADMIN_PASS || !process.env.EMAIL_USER) {
@@ -39,12 +39,12 @@ export default async function handler(req, res) {
     const port = parseInt(process.env.EMAIL_PORT || '587', 10);
     const isSecure = port === 465;
 
-    console.log('Creating transporter with:', {
+    /* console.log('Creating transporter with:', {
       host: process.env.EMAIL_HOST,
       port: port,
       secure: isSecure,
       user: process.env.ADMIN_USER,
-    });
+    }); */
 
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,

@@ -48,7 +48,7 @@
   transition: background 0.18s;
 }
 .job-detail-apply-btn-large:hover {
-  filter: brightness(0.93); /* more broadly supported than darken() */
+  filter: brightness(0.93); 
 }
 .job-detail-back-button,
 .job-detail-back-to-careers-btn {

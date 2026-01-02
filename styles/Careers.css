@@ -162,8 +162,7 @@
   padding: 8px 0;
 }
 
-/* JOB CARD */
-/* Container for all department cards */
+/* JOB CARD  Container for all department cards */
 .careers-jobs-grid { 
   display: grid;
   grid-template-columns: repeat(3, 1fr);

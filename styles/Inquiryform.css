@@ -101,7 +101,7 @@
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* 📱 Mobile Responsive */
+/* Mobile Responsive */
 @media (max-width: 600px) {
   .franchise-modal {
     width: 95%;

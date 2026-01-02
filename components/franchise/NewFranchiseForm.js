@@ -1,6 +1,6 @@
 import React, { useState,useEffect} from "react";
 import { Loader2, CheckCircle } from "lucide-react";
-import Image from "next/image"; // Import Image
+import Image from "next/image"; 
 
 const NewFranchiseForm = () => {
   const [formData, setFormData] = useState({

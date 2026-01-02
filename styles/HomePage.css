@@ -25,7 +25,6 @@
   text-align: center;
   animation: fadeInUp 1s ease-in-out;
   transition: transform 0.5s ease;
-   /*  transform: translateX(2%);adjust % for same look */
   bottom: 30px;
 }
 

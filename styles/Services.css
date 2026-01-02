@@ -646,7 +646,7 @@
     height: 50vh;
     padding: 0;
     color: var(--color-white);
-    flex-direction: column; /* Changed for better mobile stacking */
+    flex-direction: column; 
   }
 
   .services-image-container {

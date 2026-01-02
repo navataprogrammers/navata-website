@@ -1,4 +1,3 @@
-// File: components/careers/JobsByDepartment.js
 import React from 'react';
 import Link from 'next/link';
 import AnimateOnScroll from '../AnimateonScroll';
