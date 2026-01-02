@@ -530,7 +530,7 @@
 /* Mobile Responsive */
 @media (max-width: 767px) {
   .aboutus-section {
-    height: 50vh; 
+    height: 60vh; 
     padding: 0; 
   }
 
