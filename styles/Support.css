@@ -441,6 +441,10 @@ button[aria-expanded="true"] + .support-faq-answer-wrapper .support-faq-answer {
     font-size: .95rem;
     padding-left: 1rem;
   }
+  .support-terms-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 @media (max-width: 600px) {

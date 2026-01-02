@@ -1,5 +1,3 @@
-/* AboutUs.css - MODIFIED VERSION */
-
 /* --- About Us Page Styles --- */
 .about-us-container {
   background-color: var(--color-bg);
@@ -23,11 +21,11 @@
   color: var(--color-text-muted);
 }
 
-/* --- Hero Section (Updated to match Services Banner) --- */
+/* --- Hero Section --- */
 .aboutus-section {
   width: 100%;
   max-width: none; /* Full width */
-  height: 65vh; /* Same height as services-banner */
+  height: 65vh; 
   position: relative;
   display: flex;
   align-items: center;
@@ -37,7 +35,7 @@
   background: var(--color-bg); 
 }
 
-/* --- Image and Overlay (Reusing services-banner style for consistency) --- */
+/* --- Image and Overlay --- */
 .hero-image {
   position: absolute;
   top: 0;
@@ -46,12 +44,12 @@
   height: 100%;
   z-index: 0; 
   background: url('/images/India_map.png') no-repeat center /cover; /* Image covers the area */
-  opacity: 1; /* Image is fully visible behind overlay */
-  border-radius: 0; /* Remove border-radius for full width banner */
+  opacity: 1; 
+  border-radius: 0; 
   min-width: unset;
 }
 
-.hero-image::after { /* Image overlay to darken and blend */
+.hero-image::after { 
   content: '';
   position: absolute;
   inset: 0;
@@ -67,20 +65,16 @@
   position: relative;
   z-index: 3; /* Above the overlay */
   text-align: center; /* Center the text */
-  padding: 2rem 4rem; /* Same padding as services-banner-text */
+  padding: 2rem 4rem; 
   max-width: 800px;
   margin: 0 auto;
   min-width: unset;
   color: var(--color-white); /* Text color contrast */
 }
 
-/* Removing the pulse animation as it's not present in the services banner style */
-@keyframes pulse {
-  /* Removed for services banner consistency */
-}
 
 .text-overlay {
-  background: transparent; /* Remove background, relying on the image overlay */
+  background: transparent; 
   padding: 0;
   border-radius: 0;
   z-index: 3;
@@ -90,12 +84,12 @@
   padding-top: 0;
   font-size: var(--font-main);
   font-weight: 700;
-  color: var(--color-white); /* Changed to white for dark background */
+  color: var(--color-white); 
   letter-spacing: -0.01em;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 
-               0 4px 12px rgba(0, 0, 0, 0.4); /* Added text shadow for visibility */
+               0 4px 12px rgba(0, 0, 0, 0.4); /*text shadow for visibility */
   margin-bottom: 24px;
-  text-align: center; /* Center the title */
+  text-align: center; 
   position: relative;
 }
 
@@ -103,7 +97,7 @@
   content: '';
   position: absolute;
   bottom: -12px;
-  left: 50%; /* Center the underline */
+  left: 50%; 
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
@@ -112,17 +106,17 @@
 }
 
 .aboutus-subtitle {
-  text-align: center; /* Center the subtitle */
+  text-align: center; 
   font-size: var(--font-subheading);
-  line-height: 1.8; /* Increased line-height for better readability */
-  color: var(--color-white); /* Changed to white for dark background */
+  line-height: 1.8; 
+  color: var(--color-white); 
   font-weight: 400;
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5), 
-               0 2px 10px rgba(0, 0, 0, 0.4); /* Added text shadow */
-  animation: none; /* Removed specific animation for consistency, use the general page animation if needed */
+               0 2px 10px rgba(0, 0, 0, 0.4); 
+  animation: none; 
 }
 
-/* --- Section Base Styles (Rest of file unchanged but included for completeness) --- */
+/* --- Section Base Styles  --- */
 .section {
   padding: 2rem 1.5rem;
 }
@@ -532,12 +526,11 @@
   line-height: 1.6;
 }
 
-/* --- Responsive Design for About Us Section --- */
 
 /* Mobile Responsive */
 @media (max-width: 767px) {
   .aboutus-section {
-    height: 50vh; /* Shorter height on mobile */
+    height: 50vh; 
     padding: 0; 
   }
 
@@ -545,7 +538,7 @@
     min-width: unset;
     border-radius: 0; 
   }
-  .hero-image::after { /* Ensure overlay is still active on mobile */
+  .hero-image::after { 
     z-index: 1;
   }
 
@@ -558,7 +551,7 @@
   .aboutus-title {font-size: 2rem; color: var(--color-white); text-align: center;}
   
   .aboutus-subtitle { 
-    font-size: 1rem; 
+    font-size: 0.8rem; 
     line-height: 1.4;
     color: var(--color-white);
     text-align: center;
