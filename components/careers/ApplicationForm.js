@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { AWS_API_BASE_URL } from "../../lib/awsApi";
+import { uploadFileToS3 } from "../../lib/uploadToS3";
+
 
 const initialFormState = {
   firstName: '',
@@ -49,34 +52,37 @@ const ApplicationForm = ({ jobId, jobName, onSubmitSuccess }) => {
     setSubmitting(true);
 
     try {
-      const formDataToSend = new FormData();
-      Object.keys(formData).forEach(key => {
-        formDataToSend.append(key, formData[key]);
-      });
-      formDataToSend.append('jobId', jobId);
-      formDataToSend.append('jobName', jobName);
+      const resumeUrl = await uploadFileToS3(formData.resume);
 
-      const response = await fetch("/api/send-application", {
+      await fetch(`${AWS_API_BASE_URL}/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formDataToSend)
+        body: JSON.stringify({
+          formType: "Careers",
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          mobile: formData.phone,
+          resumeUrl,
+          extra: `
+            Job ID: ${jobId}
+            Job Name: ${jobName}
+            Experience: ${formData.experience}
+            Source: ${formData.jobSource}
+          `,
+        }),
       });
 
-      const result = await response.json();
-      if (response.ok) {
-        alert('Application submitted successfully!');
-        onSubmitSuccess?.();
-      } else {
-        alert('Error: ' + result.message);
-      }
-
-    } catch (error) {
-      console.error(error);
-      alert('Error submitting application. Please try again.');
+      alert("Application submitted successfully!");
+      setFormData(initialFormState);
+      onSubmitSuccess?.();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to submit application");
     } finally {
       setSubmitting(false);
     }
   };
+
 
   return (
     <section className="application-form-main-page">
