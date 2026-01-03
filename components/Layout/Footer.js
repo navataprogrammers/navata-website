@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Phone, Send, Mail, MapPin, CheckCircle, XCircle } from 'lucide-react';
 import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
+import emailjs from '@emailjs/browser';
 import '../../styles/Footer.css';
 
 const WhatsAppIcon = ({ size = 28, color = "#ffffff" }) => (
@@ -46,27 +47,36 @@ const Footer = () => {
     setSubmissionStatus({ status: 'submitting', message: '' });
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      await emailjs.send(
+        'service_kx0lp7a',        // service ID
+        'template_ytlidxg',       // template id
+        {
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.mobile,
+          message: formData.message,
+        },
+        'ryU_OCk3yj3cf1E_4'         // public key
+      );
+
+      setSubmissionStatus({
+        status: 'success',
+        message: 'Thank you! Your message has been sent.'
       });
 
-      const data = await response.json();
+      setFormData(initialFormState);
+      setTimeout(() => setSubmissionStatus({ status: 'idle', message: '' }), 5000);
 
-      if (response.ok) {
-        setSubmissionStatus({ status: 'success', message: 'Thank you! Your message has been sent.' });
-        setFormData(initialFormState);
-        setTimeout(() => setSubmissionStatus({ status: 'idle', message: '' }), 5000);
-      } else {
-        throw new Error(data.message || "Failed to send message.");
-      }
     } catch (error) {
-      console.error("Error sending inquiry:", error);
-      setSubmissionStatus({ status: 'error', message: error.message || "Something went wrong. Please try again." });
+      console.error('EmailJS Error:', error);
+      setSubmissionStatus({
+        status: 'error',
+        message: 'Failed to send message. Please try again.'
+      });
       setTimeout(() => setSubmissionStatus({ status: 'idle', message: '' }), 5000);
     }
-  }, [formData, initialFormState]); 
+  }, [formData]);
+
 
   return (
     <div className="footer-wrapper">
