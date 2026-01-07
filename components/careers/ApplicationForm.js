@@ -1,124 +1,188 @@
-import React, { useState } from 'react';
-import { AWS_API_BASE_URL } from "../../lib/awsApi";
-import { uploadFileToS3 } from "../../lib/uploadToS3";
-
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import { uploadResumeToS3 } from "../../lib/uploadResumeToS3";
 
 const initialFormState = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  experience: '',
-  jobSource: '',
-  resume: null
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  experience: "",
+  jobSource: "",
 };
 
 const ApplicationForm = ({ jobId, jobName, onSubmitSuccess }) => {
+  const formRef = useRef(null);
+
   const [formData, setFormData] = useState(initialFormState);
+  const [resume, setResume] = useState(null);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
+  /* ---------------- INPUT HANDLER ---------------- */
   const handleInput = (e) => {
-    const { name, value, files } = e.target;
-    setFormData(prev => ({
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
       ...prev,
-      [name]: files ? files[0] : value
+      [name]: value,
     }));
 
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
+  /* ---------------- VALIDATION ---------------- */
   const validate = () => {
     const errs = {};
-    ['firstName', 'lastName', 'email', 'phone', 'resume'].forEach(field => {
-      if (!formData[field]) {
-        errs[field] = `${field === 'resume' ? 'Resume' : field} is required`;
-      }
-    });
 
-    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-      errs.email = 'Invalid email';
+    if (!formData.firstName) errs.firstName = "First name is required";
+    if (!formData.lastName) errs.lastName = "Last name is required";
+    if (!formData.email) errs.email = "Email is required";
+    if (!formData.phone) errs.phone = "Phone is required";
+    if (!resume) errs.resume = "Resume is required";
+
+    if (
+      formData.email &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+    ) {
+      errs.email = "Invalid email address";
+    }
+
+    if (resume && resume.size > 10 * 1024 * 1024) {
+      errs.resume = "Resume must be under 10 MB";
     }
 
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-   const submitForm = async (e) => {
+  /* ---------------- SUBMIT FORM ---------------- */
+  const submitForm = async (e) => {
     e.preventDefault();
     if (!validate()) return;
+
     setSubmitting(true);
 
     try {
-      const resumeUrl = await uploadFileToS3(formData.resume);
+      const resumeUrl = await uploadResumeToS3(resume);
+      const addHiddenField = (name, value) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        formRef.current.appendChild(input);
+      };
 
-      await fetch(`${AWS_API_BASE_URL}/send-email`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          formType: "Careers",
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          mobile: formData.phone,
-          resumeUrl,
-          extra: `
-            Job ID: ${jobId}
-            Job Name: ${jobName}
-            Experience: ${formData.experience}
-            Source: ${formData.jobSource}
-          `,
-        }),
-      });
+      addHiddenField("form_type", "Careers");
+      addHiddenField("name", `${formData.firstName} ${formData.lastName}`);
+      addHiddenField("mobile", formData.phone);
+      addHiddenField("job_name", jobName);
+      addHiddenField("resume_link", resumeUrl);
+      addHiddenField("to_email", "bhaskargandham2255@gmail.com");
+
+
+      await emailjs.sendForm(
+        'service_kx0lp7a',        // service ID
+        'template_ytlidxg',       // template id
+        formRef.current,
+        'ryU_OCk3yj3cf1E_4'         // public key
+      );
 
       alert("Application submitted successfully!");
+
       setFormData(initialFormState);
+      setResume(null);
+      formRef.current.reset();
       onSubmitSuccess?.();
     } catch (err) {
-      console.error(err);
+      console.error("Submission Error:", err);
       alert("Failed to submit application");
     } finally {
       setSubmitting(false);
     }
   };
 
-
   return (
     <section className="application-form-main-page">
       <h2>Apply for this Position</h2>
-      <form onSubmit={submitForm}>
-        {/* Name / Email / Phone */}
+
+      <form ref={formRef} onSubmit={submitForm} noValidate>
+        {/* First & Last Name */}
         <div className="application-form-row">
-          {['firstName', 'lastName', 'email', 'phone'].map(field => (
-            <div className="application-form-group" key={field}>
-              <label htmlFor={field}>
-                {field === 'firstName' ? 'First Name' : 
-                 field === 'lastName' ? 'Last Name' : 
-                 field.charAt(0).toUpperCase() + field.slice(1)} *
-              </label>
-              <input
-                id={field}
-                name={field}
-                type={field === 'email' ? 'email' : field === 'phone' ? 'tel' : 'text'}
-                value={formData[field]}
-                onChange={handleInput}
-                className={errors[field] ? 'error' : ''}
-              />
-              {errors[field] && (
-                <span className="application-form-error-message">{errors[field]}</span>
-              )}
-            </div>
-          ))}
+          <div className="application-form-group">
+            <label>First Name *</label>
+            <input
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleInput}
+              className={errors.firstName ? "error" : ""}
+            />
+            {errors.firstName && (
+              <span className="application-form-error-message">
+                {errors.firstName}
+              </span>
+            )}
+          </div>
+
+          <div className="application-form-group">
+            <label>Last Name *</label>
+            <input
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleInput}
+              className={errors.lastName ? "error" : ""}
+            />
+            {errors.lastName && (
+              <span className="application-form-error-message">
+                {errors.lastName}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Email & Phone */}
+        <div className="application-form-row">
+          <div className="application-form-group">
+            <label>Email *</label>
+            <input
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleInput}
+              className={errors.email ? "error" : ""}
+            />
+            {errors.email && (
+              <span className="application-form-error-message">
+                {errors.email}
+              </span>
+            )}
+          </div>
+
+          <div className="application-form-group">
+            <label>Phone *</label>
+            <input
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleInput}
+              className={errors.phone ? "error" : ""}
+            />
+            {errors.phone && (
+              <span className="application-form-error-message">
+                {errors.phone}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Experience */}
         <div className="application-form-group">
-          <label htmlFor="experience">Experience</label>
-          <select 
-            id="experience" 
-            name="experience" 
-            value={formData.experience} 
+          <label>Experience</label>
+          <select
+            name="experience"
+            value={formData.experience}
             onChange={handleInput}
           >
             <option value="">Select…</option>
@@ -129,18 +193,17 @@ const ApplicationForm = ({ jobId, jobName, onSubmitSuccess }) => {
           </select>
         </div>
 
-        {/*wher do you find  the job*/}
-          <div className="application-form-group">
-          <label htmlFor="How did you here us">How Did You Here About US</label>
-           <select
-              id="jobSource"
-              name="jobSource"
-              value={formData.jobSource}
-              onChange={handleInput}
+        {/* Job Source */}
+        <div className="application-form-group">
+          <label>How did you hear about us?</label>
+          <select
+            name="job_source"
+            value={formData.job_source}
+            onChange={handleInput}
           >
             <option value="">Select…</option>
             <option value="Naukri">Naukri</option>
-            <option value="Linkedin">Linkedin</option>
+            <option value="LinkedIn">LinkedIn</option>
             <option value="Company Website">Company Website</option>
             <option value="Indeed">Indeed</option>
             <option value="Others">Others</option>
@@ -149,24 +212,26 @@ const ApplicationForm = ({ jobId, jobName, onSubmitSuccess }) => {
 
         {/* Resume Upload */}
         <div className="application-form-group">
-          <label>Resume *</label>
-          <input 
-            type="file" 
-            name="resume" 
-            accept=".pdf,.doc,.docx" 
-            onChange={handleInput}
+          <label>Resume (PDF / DOC / DOCX) *</label>
+          <input
+            type="file"
+            accept=".pdf,.doc,.docx"
+            onChange={(e) => setResume(e.target.files[0])}
           />
           {errors.resume && (
-            <span className="application-form-error-message">{errors.resume}</span>
+            <span className="application-form-error-message">
+              {errors.resume}
+            </span>
           )}
         </div>
 
-        <button 
-          type="submit" 
-          disabled={submitting} 
+        {/* Submit */}
+        <button
+          type="submit"
+          disabled={submitting}
           className="application-form-submit-btn"
         >
-          {submitting ? 'Submitting…' : 'Submit Application'}
+          {submitting ? "Submitting…" : "Submit Application"}
         </button>
       </form>
     </section>

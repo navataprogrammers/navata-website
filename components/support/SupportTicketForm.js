@@ -1,35 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Send, CheckCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
-const SupportTicketForm = () => {
-  const [ticketForm, setTicketForm] = useState({
+const SupportTicketForm = ({ onClose }) => {
+  const initialFormState = {
     name: "",
     email: "",
     category: "",
     subject: "",
     message: "",
-  });
-  const [ticketSubmitted] = useState(false);
+  };
 
-    const handleTicketSubmit = async (e) => {
+  const [ticketForm, setTicketForm] = useState(initialFormState);
+  const [loading, setLoading] = useState({ status: "idle", message: "" });
+  const [ticketSubmitted, setTicketSubmitted] = useState(false);
+
+  const formRef = useRef(null);
+
+  const handleTicketSubmit = async (e) => {
     e.preventDefault();
+    if (!formRef.current) return;
+
+    setLoading({ status: "submitting", message: "" });
 
     try {
-      const response = await fetch("/api/send-support-ticket", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(ticketForm),
-      });
+      // Remove old hidden fields
+      formRef.current
+        .querySelectorAll("input[type='hidden']")
+        .forEach(el => el.remove());
 
-      if (response.ok) {
-        alert("Ticket submitted successfully!");
-        setTicketForm({ name: "", email: "", category: "", subject: "",message: "" });
-      } else {
-        alert("Failed to submit ticket. Please try again.");
+      const addHiddenField = (name, value) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        formRef.current.appendChild(input);
+      };
+
+      addHiddenField("form_type", "Support Ticket");
+      addHiddenField("to_email", "bhaskarece9@gmail.com");
+
+      await emailjs.sendForm(
+        "service_kx0lp7a",
+        "template_ytlidxg",
+        formRef.current,
+        "ryU_OCk3yj3cf1E_4"
+      );
+
+      setLoading({ status: "success", message: "Ticket submitted successfully." });
+      setTicketSubmitted(true);
+      setTicketForm(initialFormState);
+      formRef.current.reset();
+
+      // Auto-close if provided
+      if (onClose) {
+        setTimeout(() => onClose(), 1500);
       }
-    } catch (error) {
-      console.error("Error submitting ticket:", error);
-      alert("Something went wrong. Please try again later.");
+    } catch (err) {
+      console.error("Support ticket error:", err);
+      setLoading({ status: "error", message: "Failed to send message" });
     }
   };
 
@@ -42,13 +71,19 @@ const SupportTicketForm = () => {
           <p>We&apos;ll respond to your inquiry within 24 hours.</p>
         </div>
       ) : (
-        <form onSubmit={handleTicketSubmit} className="support-ticket-form">
+        <form
+          ref={formRef}
+          onSubmit={handleTicketSubmit}
+          className="support-ticket-form"
+        >
           <h3>Submit a Support Ticket</h3>
+
           <div className="support-form-row">
             <div>
               <label>Full Name</label>
               <input
                 type="text"
+                name="name"
                 required
                 value={ticketForm.name}
                 onChange={(e) =>
@@ -56,10 +91,12 @@ const SupportTicketForm = () => {
                 }
               />
             </div>
+
             <div>
               <label>Email Address</label>
               <input
                 type="email"
+                name="email"
                 required
                 value={ticketForm.email}
                 onChange={(e) =>
@@ -68,9 +105,11 @@ const SupportTicketForm = () => {
               />
             </div>
           </div>
+
           <div>
             <label>Category</label>
             <select
+              name="category"
               required
               value={ticketForm.category}
               onChange={(e) =>
@@ -85,10 +124,12 @@ const SupportTicketForm = () => {
               <option value="other">Other</option>
             </select>
           </div>
+
           <div>
             <label>Subject</label>
             <input
               type="text"
+              name="subject"
               required
               value={ticketForm.subject}
               onChange={(e) =>
@@ -97,9 +138,11 @@ const SupportTicketForm = () => {
               placeholder="Brief description of your issue"
             />
           </div>
+
           <div>
             <label>Message</label>
             <textarea
+              name="message"
               required
               rows={6}
               value={ticketForm.message}
@@ -109,9 +152,16 @@ const SupportTicketForm = () => {
               placeholder="Please provide detailed information about your issue..."
             />
           </div>
-          <button type="submit" className="support-ticket-submit-btn">
+
+          <button
+            type="submit"
+            className="support-ticket-submit-btn"
+            disabled={loading.status === "submitting"}
+          >
             <Send className="support-ticket-send-icon" />
-            <span>Submit Ticket</span>
+            <span>
+              {loading.status === "submitting" ? "Submitting..." : "Submit Ticket"}
+            </span>
           </button>
         </form>
       )}

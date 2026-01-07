@@ -1,8 +1,11 @@
-import React, { useState,useEffect} from "react";
+import React, { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { Loader2, CheckCircle } from "lucide-react";
-import Image from "next/image"; 
+import Image from "next/image";
 
 const NewFranchiseForm = () => {
+  const formRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -10,6 +13,7 @@ const NewFranchiseForm = () => {
     location: "",
     message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -23,32 +27,47 @@ const NewFranchiseForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        "/api/send-new-franchise-inquiry",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
+      // Clear previous dynamic fields
+      formRef.current
+        .querySelectorAll("input[type='hidden']")
+        .forEach((el) => el.remove());
+
+      const addHiddenField = (name, value) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        formRef.current.appendChild(input);
+      };
+
+      // Required for common template
+      addHiddenField("form_type", "New Franchise Request");
+      addHiddenField("to_email", "prathyushagalla2908@gmail.com");
+      addHiddenField(
+        "extra",
+        `Proposed Location: ${formData.location}
+      Reason: ${"Not provided"}`
+      );
+      await emailjs.sendForm(
+        "service_kx0lp7a",     // EmailJS service ID
+        "template_ytlidxg",    // Common template ID
+        formRef.current,
+        "ryU_OCk3yj3cf1E_4"    // Public key
       );
 
-      const data = await response.json();
+      setShowSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        mobile: "",
+        location: "",
+        message: "",
+      });
 
-      if (response.ok) {
-        setShowSuccess(true);
-        setFormData({
-          name: "",
-          email: "",
-          mobile: "",
-          location: "",
-          message: "",
-        });
-      } else {
-        alert(`Error: ${data.message || "Failed to send"}`);
-      }
+      formRef.current.reset();
     } catch (error) {
-      console.error("Error sending inquiry:", error);
-      alert("Something went wrong while sending the inquiry.");
+      console.error("Error sending franchise request:", error);
+      alert("Something went wrong while sending the request.");
     } finally {
       setIsSubmitting(false);
     }
@@ -56,11 +75,8 @@ const NewFranchiseForm = () => {
 
   useEffect(() => {
     if (showSuccess) {
-      const timer = setTimeout(() => {
-        setShowSuccess(false); // hide after 30 sec
-      }, 10000); // 10000 ms = 10 sec
-
-      return () => clearTimeout(timer); // cleanup on unmount
+      const timer = setTimeout(() => setShowSuccess(false), 10000);
+      return () => clearTimeout(timer);
     }
   }, [showSuccess]);
 
@@ -68,15 +84,17 @@ const NewFranchiseForm = () => {
     <section id="franchise-request-block" className="franchise-request-bg">
       <div className="franchise-request-grid">
         <div className="franchise-request-info">
-          <h2 className="franchise-request-title">Don&apos;t See Your Location?</h2>
+          <h2 className="franchise-request-title">
+            Don&apos;t See Your Location?
+          </h2>
           <p className="franchise-request-lead">
             We are always looking to expand into new territories. If you have a
             location in mind and believe it&apos;s a great fit for a Navata
-            franchise, let us know! Fill out the form, and our team will get in
-            touch with you.
+            franchise, let us know!
           </p>
+
           <div className="franchise-request-imgwrap">
-             <Image
+            <Image
               src="/images/new_franchise.jpg"
               alt="Logistics map"
               className="franchise-request-img"
@@ -88,8 +106,12 @@ const NewFranchiseForm = () => {
         </div>
 
         <div className="franchise-request-formwrap">
-          <h3 className="franchise-request-formtitle">Request a New Location</h3>
+          <h3 className="franchise-request-formtitle">
+            Request a New Location
+          </h3>
+
           <form
+            ref={formRef}
             className="franchise-form"
             onSubmit={handleSubmit}
             autoComplete="off"
@@ -104,6 +126,7 @@ const NewFranchiseForm = () => {
                 required
               />
             </div>
+
             <div>
               <label className="franchise-form-label">Email Address</label>
               <input
@@ -115,19 +138,23 @@ const NewFranchiseForm = () => {
                 required
               />
             </div>
+
             <div>
               <label className="franchise-form-label">Phone Number</label>
               <input
                 className="franchise-form-input"
                 name="mobile"
                 type="tel"
-                value={formData.phone}
+                value={formData.mobile}
                 onChange={handleChange}
                 required
               />
             </div>
+
             <div>
-              <label className="franchise-form-label">Proposed City/Town</label>
+              <label className="franchise-form-label">
+                Proposed City/Town
+              </label>
               <input
                 className="franchise-form-input"
                 name="location"
@@ -136,6 +163,7 @@ const NewFranchiseForm = () => {
                 required
               />
             </div>
+
             <div>
               <label className="franchise-form-label">
                 Why is this a good location? (Optional)
@@ -148,7 +176,11 @@ const NewFranchiseForm = () => {
                 onChange={handleChange}
               />
             </div>
-            <button className="franchise-form-btn" disabled={isSubmitting}>
+
+            <button
+              className="franchise-form-btn"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? (
                 <span className="franchise-loader">
                   <Loader2 size={20} className="franchise-spinner" />

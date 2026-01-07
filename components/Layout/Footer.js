@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback,useRef } from 'react';
 import Image from 'next/image'; 
 import { Phone, Send, Mail, MapPin, CheckCircle, XCircle } from 'lucide-react';
 import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
-import emailjs from '@emailjs/browser';
 import '../../styles/Footer.css';
+import emailjs from "@emailjs/browser";
 
 const WhatsAppIcon = ({ size = 28, color = "#ffffff" }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={color} xmlns="http://www.w3.org/2000/svg">
@@ -36,47 +36,56 @@ const Footer = () => {
   const initialFormState = { name: '', email: '', mobile: '', message: '' };
   const [formData, setFormData] = useState(initialFormState);
   const [submissionStatus, setSubmissionStatus] = useState({ status: 'idle', message: '' });
+  const formRef = useRef(null);
 
   const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   }, []);
 
-  const handleSubmit = useCallback(async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmissionStatus({ status: 'submitting', message: '' });
 
     try {
-      await emailjs.send(
-        'service_kx0lp7a',        // service ID
-        'template_ytlidxg',       // template id
-        {
-          name: formData.name,
-          email: formData.email,
-          mobile: formData.mobile,
-          message: formData.message,
-        },
-        'ryU_OCk3yj3cf1E_4'         // public key
+      // Remove old hidden fields
+      formRef.current
+        .querySelectorAll("input[type='hidden']")
+        .forEach(el => el.remove());
+
+      const addHiddenField = (name, value) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        formRef.current.appendChild(input);
+      };
+
+      addHiddenField("form_type", "Contact");
+      addHiddenField("to_email", "bhaskarece9@gmail.com");
+
+      await emailjs.sendForm(
+        "service_kx0lp7a",
+        "template_ytlidxg",
+        formRef.current,
+        "ryU_OCk3yj3cf1E_4"
       );
 
       setSubmissionStatus({
-        status: 'success',
-        message: 'Thank you! Your message has been sent.'
+        status: "success",
+        message: "Thank you! Your message has been sent.",
       });
 
       setFormData(initialFormState);
-      setTimeout(() => setSubmissionStatus({ status: 'idle', message: '' }), 5000);
-
-    } catch (error) {
-      console.error('EmailJS Error:', error);
+      formRef.current.reset();
+    } catch (err) {
+      console.error("Contact form error:", err);
       setSubmissionStatus({
-        status: 'error',
-        message: 'Failed to send message. Please try again.'
+        status: "error",
+        message: "Failed to send message",
       });
-      setTimeout(() => setSubmissionStatus({ status: 'idle', message: '' }), 5000);
     }
-  }, [formData]);
-
+  };
 
   return (
     <div className="footer-wrapper">
@@ -126,7 +135,7 @@ const Footer = () => {
           <div className="form-follow-container">
             <div className="form-section">
               <h2 className="form-title">Send Us a Message</h2>
-              <form onSubmit={handleSubmit}>
+              <form ref={formRef} onSubmit={handleSubmit}>
                 <div className="form-grid">
                   <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name" className="form-input" required />
                   <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Your Email" className="form-input" required />
