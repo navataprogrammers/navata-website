@@ -41,8 +41,9 @@ const NewFranchiseForm = () => {
       };
 
       // Required for common template
-      addHiddenField("form_type", "New Franchise Request");
-      addHiddenField("to_email", "prathyushagalla2908@gmail.com");
+      addHiddenField("form_type", "Franchise Request");
+      //addHiddenField("to_email", "prathyushagalla2908@gmail.com");
+      addHiddenField("to_email", "agency@navata.com");
       addHiddenField(
         "extra",
         `Proposed Location: ${formData.location}

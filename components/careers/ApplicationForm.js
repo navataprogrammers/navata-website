@@ -80,8 +80,8 @@ const ApplicationForm = ({ jobId, jobName, onSubmitSuccess }) => {
       addHiddenField("mobile", formData.phone);
       addHiddenField("job_name", jobName);
       addHiddenField("resume_link", resumeUrl);
-      addHiddenField("to_email", "bhaskargandham2255@gmail.com");
-
+      //addHiddenField("to_email", "bhaskargandham2255@gmail.com");
+      addHiddenField("to_email", "careers@navata.com");
 
       await emailjs.sendForm(
         'service_kx0lp7a',        // service ID

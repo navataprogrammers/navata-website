@@ -51,7 +51,8 @@ const FranchiseInquiryModal = ({
       };
 
       addHiddenField("form_type", "Franchise Enquiry");
-      addHiddenField("to_email", "bhaskargandham9800@gmail.com");
+      //addHiddenField("to_email", "bhaskargandham9800@gmail.com");
+      addHiddenField("to_email", "agency@navata.com");
 
       await emailjs.sendForm(
         "service_kx0lp7a",

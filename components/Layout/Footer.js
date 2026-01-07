@@ -62,7 +62,9 @@ const Footer = () => {
       };
 
       addHiddenField("form_type", "Contact");
-      addHiddenField("to_email", "bhaskarece9@gmail.com");
+      //addHiddenField("to_email", "bhaskarece9@gmail.com");
+      addHiddenField("to_email", "customercare@navata.com");
+
 
       await emailjs.sendForm(
         "service_kx0lp7a",

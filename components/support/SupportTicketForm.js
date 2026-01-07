@@ -38,7 +38,8 @@ const SupportTicketForm = ({ onClose }) => {
       };
 
       addHiddenField("form_type", "Support Ticket");
-      addHiddenField("to_email", "bhaskarece9@gmail.com");
+      //addHiddenField("to_email", "bhaskarece9@gmail.com");
+      addHiddenField("to_email", "customercare@navata.com");
 
       await emailjs.sendForm(
         "service_kx0lp7a",
