@@ -28,7 +28,7 @@ export const MenuItems = {
     {
       title: 'Blog',
       cName: 'dropdown-link',
-      path: '/blog'
+      path: '/cms/blog'
     } 
   ] 
 };
