@@ -3,12 +3,27 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
-     unoptimized: true,
+    unoptimized: true,
     domains: [
-      'img.icons8.com',
-      'images.unsplash.com',
-      'jsonplaceholder.typicode.com'
+      "img.icons8.com",
+      "images.unsplash.com",
+      "jsonplaceholder.typicode.com",
     ],
+  },
+
+  //  AMPLIFY + CLOUDFRONT CACHE
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store, max-age=0",
+          },
+        ],
+      },
+    ];
   },
 };
 
