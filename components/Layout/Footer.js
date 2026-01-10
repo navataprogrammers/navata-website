@@ -4,7 +4,7 @@ import { Phone, Send, Mail, MapPin, CheckCircle, XCircle } from 'lucide-react';
 import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 import '../../styles/Footer.css';
-import emailjs from "@emailjs/browser";
+import { sendEmail } from "../../lib/sendEmail";
 
 const WhatsAppIcon = ({ size = 28, color = "#ffffff" }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={color} xmlns="http://www.w3.org/2000/svg">
@@ -62,17 +62,9 @@ const Footer = () => {
       };
 
       addHiddenField("form_type", "Contact");
-      //addHiddenField("to_email", "bhaskarece9@gmail.com");
       addHiddenField("to_email", "customercare@navata.com");
 
-
-      await emailjs.sendForm(
-        "service_kx0lp7a",
-        "template_ytlidxg",
-        formRef.current,
-        "ryU_OCk3yj3cf1E_4"
-      );
-
+      await sendEmail(formRef);
       setSubmissionStatus({
         status: "success",
         message: "Thank you! Your message has been sent.",

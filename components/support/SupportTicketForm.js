@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Send, CheckCircle } from "lucide-react";
-import emailjs from "@emailjs/browser";
+import { sendEmail } from "../../lib/sendEmail";
 
 const SupportTicketForm = ({ onClose }) => {
   const initialFormState = {
@@ -41,13 +41,7 @@ const SupportTicketForm = ({ onClose }) => {
       //addHiddenField("to_email", "bhaskarece9@gmail.com");
       addHiddenField("to_email", "customercare@navata.com");
 
-      await emailjs.sendForm(
-        "service_kx0lp7a",
-        "template_ytlidxg",
-        formRef.current,
-        "ryU_OCk3yj3cf1E_4"
-      );
-
+      await sendEmail(formRef);
       setLoading({ status: "success", message: "Ticket submitted successfully." });
       setTicketSubmitted(true);
       setTicketForm(initialFormState);

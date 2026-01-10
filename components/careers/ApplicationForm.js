@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import { sendEmail } from "../../lib/sendEmail";
 import { uploadResumeToS3 } from "../../lib/uploadResumeToS3";
 
 const initialFormState = {
@@ -80,15 +80,10 @@ const ApplicationForm = ({ jobId, jobName, onSubmitSuccess }) => {
       addHiddenField("mobile", formData.phone);
       addHiddenField("job_name", jobName);
       addHiddenField("resume_link", resumeUrl);
-      addHiddenField("to_email", "careers@navata.com");
+      addHiddenField("to_email", "prathyushagalla2908@gmail.com")
+      //addHiddenField("to_email", "careers@navata.com");
 
-      await emailjs.sendForm(
-        'service_kx0lp7a',        // service ID
-        'template_ytlidxg',       // template id
-        formRef.current,
-        'ryU_OCk3yj3cf1E_4'         // public key
-      );
-
+      await sendEmail(formRef);
       alert("Application submitted successfully!");
 
       setFormData(initialFormState);

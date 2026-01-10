@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import { sendEmail } from "../../lib/sendEmail";
 import "../../styles/Inquiryform.css";
 
 const FranchiseInquiryModal = ({
@@ -54,13 +54,7 @@ const FranchiseInquiryModal = ({
       //addHiddenField("to_email", "bhaskargandham9800@gmail.com");
       addHiddenField("to_email", "agency@navata.com");
 
-      await emailjs.sendForm(
-        "service_kx0lp7a",
-        "template_ytlidxg",
-        formRef.current,
-        "ryU_OCk3yj3cf1E_4"
-      );
-
+      await sendEmail(formRef);
       setLoading({
         status: "success",
         message: "Thank you! Your message has been sent.",

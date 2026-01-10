@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import { sendEmail } from "../../lib/sendEmail";
 import { Loader2, CheckCircle } from "lucide-react";
 import Image from "next/image";
 
@@ -49,12 +49,7 @@ const NewFranchiseForm = () => {
         `Proposed Location: ${formData.location}
       Reason: ${"Not provided"}`
       );
-      await emailjs.sendForm(
-        "service_kx0lp7a",     // EmailJS service ID
-        "template_ytlidxg",    // Common template ID
-        formRef.current,
-        "ryU_OCk3yj3cf1E_4"    // Public key
-      );
+      await sendEmail(formRef);
 
       setShowSuccess(true);
       setFormData({
