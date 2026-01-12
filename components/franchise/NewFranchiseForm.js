@@ -40,9 +40,7 @@ const NewFranchiseForm = () => {
         formRef.current.appendChild(input);
       };
 
-      // Required for common template
       addHiddenField("form_type", "Franchise Request");
-      //addHiddenField("to_email", "prathyushagalla2908@gmail.com");
       addHiddenField("to_email", "agency@navata.com");
       addHiddenField(
         "extra",

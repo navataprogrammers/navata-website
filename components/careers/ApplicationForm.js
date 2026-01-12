@@ -60,43 +60,40 @@ const ApplicationForm = ({ jobId, jobName, onSubmitSuccess }) => {
 
   /* ---------------- SUBMIT FORM ---------------- */
   const submitForm = async (e) => {
-    e.preventDefault();
-    if (!validate()) return;
+  e.preventDefault();
+  if (!validate()) return;
+  setSubmitting(true);
 
-    setSubmitting(true);
-
-    try {
-      const resumeUrl = await uploadResumeToS3(resume);
-      const addHiddenField = (name, value) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = name;
-        input.value = value;
-        formRef.current.appendChild(input);
-      };
-
+  try {
+    const resumeUrl = await uploadResumeToS3(resume);
+    const addHiddenField = (name, value) => {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = name;
+      input.value = value;
+      formRef.current.appendChild(input);
+    };
       addHiddenField("form_type", "Careers");
       addHiddenField("name", `${formData.firstName} ${formData.lastName}`);
       addHiddenField("mobile", formData.phone);
       addHiddenField("job_name", jobName);
       addHiddenField("resume_link", resumeUrl);
-      addHiddenField("to_email", "prathyushagalla2908@gmail.com")
-      //addHiddenField("to_email", "careers@navata.com");
+      addHiddenField("to_email", "careers@navata.com");
+    await sendEmail(formRef);
 
-      await sendEmail(formRef);
-      alert("Application submitted successfully!");
+    alert("Application submitted successfully!");
+    formRef.current.reset();
+    setResume(null);
+    onSubmitSuccess?.();
 
-      setFormData(initialFormState);
-      setResume(null);
-      formRef.current.reset();
-      onSubmitSuccess?.();
-    } catch (err) {
-      console.error("Submission Error:", err);
-      alert("Failed to submit application");
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  } catch (err) {
+    console.error("Submission Error:", err);
+    alert("Submission failed");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   return (
     <section className="application-form-main-page">

@@ -31,9 +31,7 @@ const FranchiseInquiryModal = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!formRef.current) return;
-
     setLoading({ status: "submitting", message: "" });
 
     try {
@@ -51,7 +49,6 @@ const FranchiseInquiryModal = ({
       };
 
       addHiddenField("form_type", "Franchise Enquiry");
-      //addHiddenField("to_email", "bhaskargandham9800@gmail.com");
       addHiddenField("to_email", "agency@navata.com");
 
       await sendEmail(formRef);
