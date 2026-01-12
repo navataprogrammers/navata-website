@@ -20,7 +20,7 @@
 
 .support-bg-img {
   object-fit: cover;
-  background-color: #fef8d6;;
+  background-color: #fef8d6;
 }
 
 .support-banner::after {
@@ -43,6 +43,7 @@
   color: var(--color-white);
   opacity: 1 !important;
   transform: none !important;
+  visibility: visible !important;
 }
 
 /* Title + underline */
