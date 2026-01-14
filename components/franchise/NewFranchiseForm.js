@@ -27,11 +27,12 @@ const NewFranchiseForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Clear previous dynamic fields
+      //  Remove old hidden fields (prevents duplicates)
       formRef.current
         .querySelectorAll("input[type='hidden']")
         .forEach((el) => el.remove());
 
+      //  Helper to add hidden fields
       const addHiddenField = (name, value) => {
         const input = document.createElement("input");
         input.type = "hidden";
@@ -40,15 +41,15 @@ const NewFranchiseForm = () => {
         formRef.current.appendChild(input);
       };
 
+      //  Fields NOT present in the visible form
       addHiddenField("form_type", "Franchise Request");
       addHiddenField("to_email", "agency@navata.com");
       addHiddenField(
         "extra",
-        `Proposed Location: ${formData.location}
-      Reason: ${"Not provided"}`
-      );
-      await sendEmail(formRef);
+        `Proposed Location: ${formData.location} | Reason: ${formData.message || "Not provided"}`
+    );
 
+      await sendEmail(formRef);
       setShowSuccess(true);
       setFormData({
         name: "",
