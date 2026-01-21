@@ -36,10 +36,12 @@ const Navbar = () => {
   closeAllDropdowns();
   setIsMenuOpen(false);
 
-  if (path === '/blog') {
-    window.location.href = path; // Forces a browser reload to let CloudFront take over
+  if (path === '/blog' || path.startsWith('/cms')) {
+    // FORCE a full page reload to leave the Next.js app and let the cloudfront take over.
+    window.location.href = path; 
   } else {
-    router.push(path); // Standard Next.js navigation for everything else
+    // Stay inside Next.js for everything else
+    router.push(path);
   }
 };
 
