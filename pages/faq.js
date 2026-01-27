@@ -41,7 +41,7 @@ const SupportPage = ({ faqData, categories,termsAndConditions }) => {
         <LocateTrackButtons />
         <div className="support-image-container">
             <Image
-              src="/images/support1.jpg"
+              src="/images/support.jpg"
               alt="Illustration representing support services"
               width={1000}
               height={1000}

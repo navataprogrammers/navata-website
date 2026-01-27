@@ -18,7 +18,7 @@ const ServicesPage = ({ services, valueAdds, process }) => {
       <div className="services-banner">
         <div className="services-image-container">
           <Image
-            src="/images/IMG_5313 edited.jpg"
+            src="/images/services.jpg"
             alt="Illustration representing logistics and delivery services"
             className="hero-bg-img"
             fill

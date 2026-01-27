@@ -32,7 +32,7 @@ const FranchisePage = ({ initialFranchises, initialStates }) => {
         <LocateTrackButtons />
         <div className="franchise-hero-image-container">
             <Image
-                src="/images/franchise1.png"
+                src="/images/franchise.png"
                 alt="Franchise opportunities"
                 width={1920}
                 height={600}
