@@ -36,14 +36,12 @@ const Navbar = () => {
   closeAllDropdowns();
   setIsMenuOpen(false);
 
-  if (path === '/blog' || path.startsWith('/cms')) {
-    // FORCE a full page reload to leave the Next.js app and let the cloudfront take over.
-    window.location.href = path; 
-  } else {
-    // Stay inside Next.js for everything else
+    if (path.startsWith('/cms')) {
+    window.location.href = path; // exit Next.js → CloudFront → WordPress
+    } else {
     router.push(path);
-  }
-};
+    } 
+  };
 
   useEffect(() => {
     const handleResize = () => {
