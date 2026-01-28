@@ -25,6 +25,29 @@ const nextConfig = {
       },
     ];
   },
+
+  // Redirects for old URLs
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'navata.com',
+          },
+        ],
+        destination: 'https://www.navata.com/:path*',
+        permanent: true,
+      },
+      // Redirect .php URLs to non-.php
+      {
+        source: '/:path*.php',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ];
+  }
 };
 
 module.exports = nextConfig;
